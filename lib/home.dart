@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'sortmenu.dart';
 
 class Home extends StatelessWidget{
 
@@ -18,7 +19,8 @@ class Home extends StatelessWidget{
             
             children: [
 
-              Text('')
+              SortMenu(),
+
 
             ],
             
