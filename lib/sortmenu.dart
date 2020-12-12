@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class SortMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
     return Container( // CHANGE modify to accomodate two types of sort menu
 
       child: Row(
@@ -16,9 +17,13 @@ class SortMenu extends StatelessWidget {
 
         ],
 
+        //padding
+
       ), 
 
+      color: Color.fromRGBO(160,127,136,0.7),
       width: 140.0,
+      height: 25.0,
 
     );
 
