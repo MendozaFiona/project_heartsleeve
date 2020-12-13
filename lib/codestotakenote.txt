@@ -1,0 +1,13 @@
+FOR BOTTOM NAVIGATION BAR:
+
+void _onItemTapped(int index) {
+  setState(() {
+    _selectedIndex = index;
+  });
+}
+
+/////////////////////////////
+
+currentIndex: _selectedIndex,
+      selectedItemColor: Colors.amber[800],
+      onTap: _onItemTapped,
