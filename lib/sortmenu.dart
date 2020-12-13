@@ -4,27 +4,34 @@ class SortMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return Container( // CHANGE modify to accomodate two types of sort menu
+    return Align(
+      alignment: Alignment.centerLeft,
+      
+      child: Padding(
+        padding: EdgeInsets.all(10.0),
+        child: Container( // CHANGE modify to accomodate two types of sort menu
 
-      child: Row(
-        children: [
+          child: Row(
+            children: [
 
-          Expanded(child: Text('sort', textAlign: TextAlign.center)),
+              Expanded(child: Text('sort', textAlign: TextAlign.center)),
 
-          Expanded(child: Text('latest', textAlign: TextAlign.center)),
+              Expanded(child: Text('latest', textAlign: TextAlign.center)),
 
-          Expanded(child: Text('A-Z', textAlign: TextAlign.center)),
+              Expanded(child: Text('A-Z', textAlign: TextAlign.center)),
 
-        ],
+            ],
 
-        //padding
+            //padding
 
-      ), 
+          ), 
 
-      color: Color.fromRGBO(160,127,136,0.7),
-      width: 140.0,
-      height: 25.0,
+          color: Color.fromRGBO(160,127,136,0.7),
+          width: MediaQuery.of(context).size.width * 0.5,
+          height: MediaQuery.of(context).size.height * 0.05,
 
+        )
+      )
     );
 
   }
