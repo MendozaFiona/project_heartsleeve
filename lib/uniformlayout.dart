@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'homepage.dart';
 
-class CustomBackground extends StatelessWidget {
+class UniformLayout extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +24,29 @@ class CustomBackground extends StatelessWidget {
           color: Color.fromRGBO(229,229,229,1),      
 
         ),
-        child: HomePage(),
+        child: HomePage(), //change to be dynamic
 
         constraints: BoxConstraints.expand()
       ),
+
+      bottomNavigationBar: (
+
+        BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.business)/*Image.asset("assets/images/write.png")*/,
+              label: 'home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home)/*Image.asset("assets/images/write.png")*/,
+              label: 'test',
+            )
+          ],
+        
+        )
+      
+      ),
+
     );
   } // build
 
