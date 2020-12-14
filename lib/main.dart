@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'homepage.dart';
+//import 'homepage.dart';
+import 'writepage.dart';
 
 void main() {
   runApp(HeartSleeveApp());
@@ -18,7 +19,7 @@ class HeartSleeveApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Color.fromRGBO(106,65,98,1) 
         ),
-        home: HomePage()
+        home: WritePage()//HomePage()
     
     );
     
