@@ -4,7 +4,7 @@ class DiaryPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return Padding(
+    return InkWell(child: Padding(
       padding: EdgeInsets.only(right: 10.0, left: 10.0, bottom: 5.0),
 
       child: Container( // CHANGE modify to depend text on parameter sent
@@ -20,8 +20,6 @@ class DiaryPreview extends StatelessWidget {
                 Expanded(child: Text('time', textAlign: TextAlign.center)),
 
               ], // children
-
-            //padding
 
             ),
 
@@ -42,9 +40,15 @@ class DiaryPreview extends StatelessWidget {
         ),
 
         width: MediaQuery.of(context).size.width * .95,
-        height: MediaQuery.of(context).size.height * .15, 
+        height: MediaQuery.of(context).size.height * .15,
 
       )
+    ),
+    
+    onTap: (){
+      print("you tapped this");
+    },
+
     );
 
   }

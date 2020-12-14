@@ -5,13 +5,20 @@ import 'diarypreview.dart';
 class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return /*Container(
-      child: */Column(
+    return Column(
         children: [
           SortMenu(),
-          DiaryPreview(),
+
+          Expanded( child: SizedBox( child: ListView(
+            children:[
+              DiaryPreview(),
+              DiaryPreview(),
+            ]
+          )
+          )),
+
         ],
-    //)
+
     );
   } // build
 

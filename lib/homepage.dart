@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
-//import 'sortmenu.dart';
-//import 'diarypreview.dart';
-import 'uniformlayout.dart';
+import 'uniformbg.dart';
 import 'btmnavigation.dart';
+import 'homebody.dart';
 
 class HomePage extends StatelessWidget{
 
   @override 
   Widget build(BuildContext context){
-    
+
     return Scaffold(
       appBar: AppBar(
           title: Text('Dashboard'),
       ),
 
-      body: UniformLayout(),
+      body: Stack(
+        children: [
+          UniformBg(),
+          Container(
+            child: HomeBody(),
+          ),
+        ]
+      ),
 
       bottomNavigationBar: BtmNavigation(),
         
