@@ -20,6 +20,7 @@ class WritePage extends StatelessWidget{
             child: SingleChildScrollView(
               child:WriteBody()
             ),
+            padding: EdgeInsets.all(15.0),
           ),
         ]
       ),

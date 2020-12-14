@@ -9,7 +9,7 @@ class SortMenu extends StatelessWidget {
       alignment: Alignment.centerLeft,
       
       child: Padding(
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.only(bottom: 10.0),
         child: Container( // CHANGE modify to accomodate two types of sort menu
 
           child: Row(

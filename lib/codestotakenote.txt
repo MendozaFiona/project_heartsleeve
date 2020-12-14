@@ -11,3 +11,9 @@ void _onItemTapped(int index) {
 currentIndex: _selectedIndex,
       selectedItemColor: Colors.amber[800],
       onTap: _onItemTapped,
+
+////////////////////////////
+
+FOR PASSWORD, IN TXTFORMFIELD:
+
+obscureText: True

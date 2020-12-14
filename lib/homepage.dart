@@ -18,6 +18,7 @@ class HomePage extends StatelessWidget{
           UniformBg(),
           Container(
             child: HomeBody(),
+            padding: EdgeInsets.all(15.0),
           ),
         ]
       ),

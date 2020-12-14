@@ -5,7 +5,7 @@ class DiaryPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return InkWell(child: Padding(
-      padding: EdgeInsets.only(right: 10.0, left: 10.0, bottom: 5.0),
+      padding: EdgeInsets.only(bottom: 10.0),
 
       child: Container( // CHANGE modify to depend text on parameter sent
         child: Column(
