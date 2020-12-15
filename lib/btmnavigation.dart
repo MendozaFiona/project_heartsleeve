@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BtmNavigation extends StatelessWidget {
-  
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
+BottomNavigationBar btmNavigation(){
+  return BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
               icon: ImageIcon(
@@ -53,6 +50,4 @@ class BtmNavigation extends StatelessWidget {
           type : BottomNavigationBarType.fixed
          
     );
-  } // build
-
 }

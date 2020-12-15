@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'styles.dart';
 import 'btmNavigation.dart';
-import 'writeBody.dart';
+import 'discoverBody.dart';
 
-class WritePage extends StatelessWidget{
+class DiscoverPage extends StatelessWidget{
 
   @override 
   Widget build(BuildContext context){
 
     return Scaffold(
       appBar: AppBar(
-          title: Text('Write'),
+          title: Text('Discover'),
       ),
 
       body: Stack(
@@ -18,7 +18,7 @@ class WritePage extends StatelessWidget{
           uniformBg(),
           Container(
             child: SingleChildScrollView(
-              child:WriteBody()
+              child:DiscoverBody()
             ),
             padding: EdgeInsets.all(15.0),
           ),

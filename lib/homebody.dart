@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'sortmenu.dart';
-import 'diarypreview.dart';
+import 'sortMenu.dart';
+import 'diaryPreview.dart';
 
-class HomeBody extends StatelessWidget {
-  //TEMPORARY BEFORE HAVING DATABASE ENTRIES
+Column homeBody(){
+
   final _diaryEntries = List<String>.generate(10, (i) => "Entry ${i + 1}");
-  //find a way to pass indices
-  
-  @override
-  Widget build(BuildContext context) {
-    return Column(
+
+  return Column(
       children: [
         SortMenu(),
         Expanded(
@@ -24,6 +21,4 @@ class HomeBody extends StatelessWidget {
             )),
       ],
     );
-  } // build
-
 }

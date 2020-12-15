@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'uniformbg.dart';
-import 'btmnavigation.dart';
-import 'homebody.dart';
+import 'styles.dart';
+import 'btmNavigation.dart';
+import 'homeBody.dart';
 
 class HomePage extends StatelessWidget{
 
@@ -15,15 +15,15 @@ class HomePage extends StatelessWidget{
 
       body: Stack(
         children: [
-          UniformBg(),
+          uniformBg(),
           Container(
-            child: HomeBody(),
+            child: homeBody(),
             padding: EdgeInsets.all(15.0),
           ),
         ]
       ),
 
-      bottomNavigationBar: BtmNavigation(),
+      bottomNavigationBar: btmNavigation(),
         
     );
 

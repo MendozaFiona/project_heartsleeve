@@ -15,7 +15,7 @@ class SortMenu extends StatelessWidget {
           child: Row(
             children: [
 
-              Expanded(child: Text('sort', textAlign: TextAlign.center)),
+              Expanded(child: Text('sort:', textAlign: TextAlign.center)),
 
               Expanded(child: Text('latest', textAlign: TextAlign.center)),
 
