@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DiscoverFilter extends StatelessWidget {
+class MyAccountBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
@@ -8,7 +8,7 @@ class DiscoverFilter extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 10.0),
 
       child: Container( // CHANGE modify to depend text on parameter sent
-        child: Padding( child: Column(
+        child: Column(
           children: [
             Row(
               children: [
@@ -32,7 +32,7 @@ class DiscoverFilter extends StatelessWidget {
 
             )
           ]
-        ), padding: EdgeInsets.symmetric(vertical: 10),),
+        ),
 
         decoration: BoxDecoration(
           color: Color.fromRGBO(160,127,136,0.7),
@@ -40,7 +40,7 @@ class DiscoverFilter extends StatelessWidget {
         ),
 
         width: MediaQuery.of(context).size.width * .95,
-        height: MediaQuery.of(context).size.height * .5,
+        height: MediaQuery.of(context).size.height * .15,
 
       )
     ),

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'homePage.dart';
 import 'writePage.dart';
 import 'discoverPage.dart';
+import 'myAccountPage.dart';
 
 void main() {
   runApp(HeartSleeveApp());
@@ -29,7 +30,8 @@ class HeartSleeveApp extends StatelessWidget {
         ),
         //home: WritePage(),
         //home: HomePage(),
-        home: DiscoverPage(),
+        //home: DiscoverPage(),
+        home: MyAccountPage(),
     
     );
     
