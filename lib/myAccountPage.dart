@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'styles.dart';
 import 'myAccountBody.dart';
 
-class MyAccountPage extends StatelessWidget{ //probably have to change to stateful as it has edit option
+class MyAccountPage extends StatelessWidget{
 
   @override 
   Widget build(BuildContext context){
@@ -16,7 +16,7 @@ class MyAccountPage extends StatelessWidget{ //probably have to change to statef
         children: [
           uniformBg(),
           Container(
-            child: myAccountBody(),
+            child: MyAccountBody(),
             padding: EdgeInsets.all(15.0),
           ),
         ]

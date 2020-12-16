@@ -37,7 +37,7 @@ class DiaryPreview extends StatelessWidget {
         decoration: BoxDecoration(
           color: Color.fromRGBO(160,127,136,0.7),
           borderRadius: BorderRadius.all(Radius.circular(15))
-        ),
+        ), //PUT THIS IN STYLES FOR REUSAGE!!!
 
         width: MediaQuery.of(context).size.width * .95,
         height: MediaQuery.of(context).size.height * .15,

@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MyAccountBox extends StatelessWidget {
+class MyAccountBox extends StatefulWidget {
+  @override
+  AccountBoxState createState() {
+    return AccountBoxState();
+  }
+}
+
+class AccountBoxState extends State<MyAccountBox> { //this should be stateful
   @override
   Widget build(BuildContext context) {
     
