@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'styles.dart';
-import 'btmNavigation.dart';
 import 'homeBody.dart';
 
 class BookmarksPage extends StatelessWidget{
@@ -22,8 +21,6 @@ class BookmarksPage extends StatelessWidget{
           ),
         ]
       ),
-
-      bottomNavigationBar: btmNavigation(),
         
     );
 

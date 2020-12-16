@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'styles.dart';
-import 'btmNavigation.dart';
 import 'discoverBody.dart';
 
 class DiscoverPage extends StatelessWidget{
@@ -24,8 +23,6 @@ class DiscoverPage extends StatelessWidget{
           ),
         ]
       ),
-
-      bottomNavigationBar: btmNavigation(),
         
     );
 

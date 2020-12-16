@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'styles.dart';
-import 'btmNavigation.dart';
 import 'writeBody.dart';
 
 class WritePage extends StatelessWidget{
@@ -24,8 +23,6 @@ class WritePage extends StatelessWidget{
           ),
         ]
       ),
-
-      bottomNavigationBar: btmNavigation(),
         
     );
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'styles.dart';
-import 'btmNavigation.dart';
 import 'myAccountBody.dart';
 
 class MyAccountPage extends StatelessWidget{ //probably have to change to stateful as it has edit option
@@ -22,8 +21,6 @@ class MyAccountPage extends StatelessWidget{ //probably have to change to statef
           ),
         ]
       ),
-
-      bottomNavigationBar: btmNavigation(),
         
     );
 
