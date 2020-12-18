@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-
-Widget customButton([btnTxt = 'default']) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.end,
+Widget customButton([btnTxt = 'default', _defaultClr = Colors.white, _axAlign = MainAxisAlignment.end]) {
+  return GestureDetector(child:Row(
+    mainAxisAlignment: _axAlign,
     children: [
       Text(btnTxt,
-        style: TextStyle(color: Color.fromRGBO(160, 127, 136, 1))
+        style: TextStyle(color: _defaultClr)
       ),
 
       SizedBox(width: 3),
@@ -14,10 +13,12 @@ Widget customButton([btnTxt = 'default']) {
       Container(
         child: ImageIcon(
           AssetImage("assets/images/write.png"),
-          color: Color.fromRGBO(160, 127, 136, 1),
+          color: _defaultClr,
         ),
       ),
     ],
+  ),
+  onTap: (){print("you tapped the button");},
   );
 } //PLEASE CHANGE TO DYNAMIC
 

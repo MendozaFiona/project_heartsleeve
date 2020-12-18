@@ -39,8 +39,9 @@ class DiscoverSearchBarState extends State<DiscoverBody> {
           //THIS SHOULD NOT BE A TEST FORM FIELD
 
           //emptySpace(),
+          emptySpace(7.0),
 
-          customButton("SEARCH"),
+          customButton("SEARCH", Color.fromRGBO(160, 127, 136, 1)),
 
           /*Container(
             child: ,

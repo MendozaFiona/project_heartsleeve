@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:heartsleeve/myAccountBox.dart';
 import 'package:heartsleeve/myAccountTitleBox.dart';
+import 'package:heartsleeve/styles.dart';
 
 class MyAccountBody extends StatefulWidget {
   @override
@@ -20,17 +21,22 @@ class AccountSettingsState extends State<MyAccountBody> {
 
       //THESE ARE TEMPORARY, PLACEHOLDERS
 
-      TitleBox(),
+      TitleBox(defaultTitle: "ACCOUNT INFORMATION",),
 
       MyAccountBox(), //clicking edit should redirect to a profile edit page
 
-      TitleBox(),
+      TitleBox(defaultTitle: "PRIVACY AND SAFETY",),
 
       MyAccountBox(), //clicking edit should automatically change setting
 
-      TitleBox(),
+      TitleBox(defaultTitle: "DELETE MY ACCOUNT",),
 
-      //customButton("SEARCH"),
+      emptySpace(10.0),
+
+      Padding(
+        padding: EdgeInsets.only(right:10.0),
+        child:customButton("LOG OUT", Color.fromRGBO(160, 127, 136, 1))
+      ),
     ],
   );
   }
