@@ -15,7 +15,7 @@ class MyAccountBox extends StatefulWidget {
 
 class AccountBoxState extends State<MyAccountBox> {
   //GET FROM DATABASE
-  test() {
+  _test() {
     var _test = widget.fxn;
     //return accountInfo();
     if (_test == "accountInfo") {
@@ -40,7 +40,7 @@ class AccountBoxState extends State<MyAccountBox> {
 
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(20, 10, 5, 10),
-                  child: test(), //this should be dynamic
+                  child: _test(), //this should be dynamic
                 ),
 
                 decoration: BoxDecoration(

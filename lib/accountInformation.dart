@@ -58,7 +58,7 @@ accountInfo() {
       children: [
         Expanded(
           child: customButton(
-              "EDIT", Colors.white, MainAxisAlignment.center),
+              "EDIT", Colors.white, MainAxisAlignment.center, 16.0),
         )
       ], // children
     )

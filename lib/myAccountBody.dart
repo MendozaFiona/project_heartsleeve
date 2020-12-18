@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:heartsleeve/accountInformation.dart';
 import 'package:heartsleeve/myAccountBox.dart';
 import 'package:heartsleeve/myAccountTitleBox.dart';
-import 'package:heartsleeve/privacySafety.dart';
 import 'package:heartsleeve/styles.dart';
 
 class MyAccountBody extends StatefulWidget {
@@ -19,7 +17,6 @@ class AccountSettingsState extends State<MyAccountBody> {
   Widget build(BuildContext context) {
     return Column(
     children: [
-      //emptySpace(10.0),
 
       //THESE ARE TEMPORARY, PLACEHOLDERS
 
@@ -43,25 +40,3 @@ class AccountSettingsState extends State<MyAccountBody> {
   );
   }
 }
-
-/*Column myAccountBody() {
-  return Column(
-    children: [
-      //emptySpace(10.0),
-
-      //THESE ARE TEMPORARY, PLACEHOLDERS
-
-      TitleBox(),
-
-      MyAccountBox(), //clicking edit should redirect to a profile edit page
-
-      TitleBox(),
-
-      MyAccountBox(), //clicking edit should automatically change setting
-
-      TitleBox(),
-
-      //customButton("SEARCH"),
-    ],
-  );
-}*/
