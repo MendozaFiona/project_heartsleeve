@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:heartsleeve/accountInformation.dart';
 import 'package:heartsleeve/myAccountBox.dart';
 import 'package:heartsleeve/myAccountTitleBox.dart';
+import 'package:heartsleeve/privacySafety.dart';
 import 'package:heartsleeve/styles.dart';
 
 class MyAccountBody extends StatefulWidget {
@@ -23,11 +25,11 @@ class AccountSettingsState extends State<MyAccountBody> {
 
       TitleBox(defaultTitle: "ACCOUNT INFORMATION",),
 
-      MyAccountBox(), //clicking edit should redirect to a profile edit page
+      MyAccountBox(fxn: "accountInfo"), //clicking edit should redirect to a profile edit page
 
       TitleBox(defaultTitle: "PRIVACY AND SAFETY",),
 
-      MyAccountBox(), //clicking edit should automatically change setting
+      MyAccountBox(fxn: "privacySafety",), //clicking edit should automatically change setting
 
       TitleBox(defaultTitle: "DELETE MY ACCOUNT",),
 

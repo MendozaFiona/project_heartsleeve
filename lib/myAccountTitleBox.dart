@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 //var _title = "this is a temporary title";
 
-var _title;
-
 /*setTitle(var textTitle) {
     _title = textTitle;
 }*/
