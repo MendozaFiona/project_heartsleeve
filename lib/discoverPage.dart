@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'styles.dart';
+import 'essentials.dart';
 import 'discoverBody.dart';
 
 class DiscoverPage extends StatelessWidget{

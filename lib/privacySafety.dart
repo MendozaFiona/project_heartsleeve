@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heartsleeve/styles.dart';
+import 'package:heartsleeve/essentials.dart';
 
 //GET FROM DATABASE
 String _defaultName = "You haven't input a name yet",

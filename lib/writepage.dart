@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'styles.dart';
+import 'essentials.dart';
 import 'writeBody.dart';
 
 class WritePage extends StatelessWidget{

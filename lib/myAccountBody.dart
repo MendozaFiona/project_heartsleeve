@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:heartsleeve/myAccountBox.dart';
 import 'package:heartsleeve/myAccountTitleBox.dart';
-import 'package:heartsleeve/styles.dart';
+import 'package:heartsleeve/essentials.dart';
 
 class MyAccountBody extends StatefulWidget {
   @override

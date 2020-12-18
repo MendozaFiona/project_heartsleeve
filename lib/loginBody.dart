@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'styles.dart';
+import 'essentials.dart';
 
 class LoginBody extends StatefulWidget {
   @override
