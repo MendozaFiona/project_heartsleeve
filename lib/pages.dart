@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'essentials.dart';
-import 'writeBody.dart';
-import 'registerBody.dart';
-import 'myAccountBody.dart';
-import 'loginBody.dart';
-import 'homeBody.dart';
-import 'discoverBody.dart';
+import 'package:heartsleeve/essentials.dart';
+import 'package:heartsleeve/PagesBody/writeBody.dart';
+import 'package:heartsleeve/PagesBody/registerBody.dart';
+import 'package:heartsleeve/PagesBody/myAccountBody.dart';
+import 'package:heartsleeve/PagesBody/loginBody.dart';
+import 'package:heartsleeve/PagesBody/homeBody.dart';
+import 'package:heartsleeve/PagesBody/discoverBody.dart';
 
 
 //BOOKMARKS

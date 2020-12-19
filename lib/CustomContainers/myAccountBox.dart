@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heartsleeve/accountInformation.dart';
+import 'package:heartsleeve/CustomContainers/accountInformation.dart';
 import 'privacySafety.dart';
 
 class MyAccountBox extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'sortMenu.dart';
-import 'diaryPreview.dart';
+import 'package:heartsleeve/CustomContainers/sortMenu.dart';
+import 'package:heartsleeve/CustomContainers/diaryPreview.dart';
 
 Column homeBody(){
 

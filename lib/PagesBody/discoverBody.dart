@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:heartsleeve/sortmenu.dart';
-import 'essentials.dart';
-import 'discoverFilter.dart';
+import 'package:heartsleeve/essentials.dart';
+import 'package:heartsleeve/CustomContainers/discoverFilter.dart';
 
 class DiscoverBody extends StatefulWidget {
   @override

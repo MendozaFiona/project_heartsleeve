@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'essentials.dart';
+import 'package:heartsleeve/essentials.dart';
 
 class WriteBody extends StatefulWidget {
   @override

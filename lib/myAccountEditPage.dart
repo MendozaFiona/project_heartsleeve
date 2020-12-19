@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'registerBody.dart';
+import 'package:heartsleeve/PagesBody/registerBody.dart';
 
 class EditPage extends StatelessWidget{
 
