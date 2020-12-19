@@ -16,6 +16,10 @@ class LoginFormState extends State<LoginBody> {
     Navigator.popAndPushNamed(context, "/register");
   }
 
+  void _btmNav() {
+    Navigator.popAndPushNamed(context, "/btmNav");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -45,20 +49,31 @@ class LoginFormState extends State<LoginBody> {
           ),
           emptySpace(10.0),
           TextFormField(
+            obscureText: true,
             decoration: formatDecor('password'),
             maxLines: 1,
           ),
           emptySpace(25.0),
-          customButton("ENTER", Color.fromRGBO(212, 106, 146, 1),
+          
+          GestureDetector(
+            child:customButton("ENTER", Color.fromRGBO(212, 106, 146, 1),
               MainAxisAlignment.center),
+
+            onTap: _btmNav,
+          
+          ),
+          
           emptySpace(10.0),
+          
           GestureDetector(
               child: Text(
                 "Register Now",
                 style: TextStyle(
                     fontSize: 14, color: Color.fromRGBO(160, 127, 136, 1)),
               ),
-              onTap: _register)
+              onTap: _register
+          )
+
         ],
       ),
     );

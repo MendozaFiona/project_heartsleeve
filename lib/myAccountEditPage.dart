@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'registerBody.dart';
 
-class RegisterPage extends StatelessWidget{
+class EditPage extends StatelessWidget{
 
   @override 
   Widget build(BuildContext context){
 
     return Scaffold(
       appBar: AppBar(
-          title: Text('Register'),
+          title: Text('Edit'),
+          automaticallyImplyLeading: true,
+          leading: IconButton(icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.popAndPushNamed(context, "/myAccount");
+            },
+          )
       ),
 
       body: 

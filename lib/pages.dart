@@ -1,0 +1,208 @@
+import 'package:flutter/material.dart';
+import 'essentials.dart';
+import 'writeBody.dart';
+import 'registerBody.dart';
+import 'myAccountBody.dart';
+import 'loginBody.dart';
+import 'homeBody.dart';
+import 'discoverBody.dart';
+
+
+//BOOKMARKS
+class BookmarksPage extends StatelessWidget{
+
+  @override 
+  Widget build(BuildContext context){
+
+    return Scaffold(
+      appBar: AppBar(
+          title: Text('Bookmarks'),
+      ),
+
+      body: Stack(
+        children: [
+          uniformBg(),
+          Container(
+            child: homeBody(), //both home and bookmarks have same layout, different data
+            padding: EdgeInsets.all(15.0),
+          ),
+        ]
+      ),
+        
+    );
+
+  } // build
+
+}
+
+
+//DISCOVER
+class DiscoverPage extends StatelessWidget{
+
+  @override 
+  Widget build(BuildContext context){
+
+    return Scaffold(
+      appBar: AppBar(
+          title: Text('Discover'),
+      ),
+
+      body: Stack(
+        children: [
+          uniformBg(),
+          Container(
+            child: SingleChildScrollView(
+              child:DiscoverBody()
+            ),
+            padding: EdgeInsets.all(15.0),
+          ),
+        ]
+      ),
+        
+    );
+
+  } // build
+
+}
+
+
+//HOME
+class HomePage extends StatelessWidget{
+
+  @override 
+  Widget build(BuildContext context){
+
+    return Scaffold(
+      appBar: AppBar(
+          title: Text('Dashboard'),
+      ),
+
+      body: Stack(
+        children: [
+          uniformBg(),
+          Container(
+            child: homeBody(),
+            padding: EdgeInsets.all(15.0),
+          ),
+        ]
+      ),
+        
+    );
+
+  } // build
+
+}
+
+
+//LOGIN
+class LoginPage extends StatelessWidget{
+
+  @override 
+  Widget build(BuildContext context){
+
+    return Scaffold(
+      appBar: AppBar(
+          title: Text('Login'),
+      ),
+
+      body: 
+          Container(
+            child: SingleChildScrollView(
+              child:LoginBody(),
+              padding: EdgeInsets.all(50.0),
+          )),
+        
+    );
+
+  } // build
+
+}
+
+
+//MY ACCOUNT
+class MyAccountPage extends StatelessWidget{
+
+  @override 
+  Widget build(BuildContext context){
+
+    return Scaffold(
+      appBar: AppBar(
+          title: Text('My Account'),
+      ),
+
+      body: Stack(
+        children: [
+          uniformBg(),
+          Container(
+            child: MyAccountBody(),
+            padding: EdgeInsets.all(15.0),
+          ),
+        ]
+      ),
+        
+    );
+
+  } // build
+
+}
+
+
+//REGISTER
+class RegisterPage extends StatelessWidget{
+
+  @override 
+  Widget build(BuildContext context){
+
+    return Scaffold(
+      appBar: AppBar(
+          title: Text('Register'),
+          automaticallyImplyLeading: true,
+          leading: IconButton(icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.popAndPushNamed(context, "/");
+            },
+          )
+      ),
+
+      body: 
+          Container(
+            child: SingleChildScrollView(
+              child:RegisterBody(),
+              padding: EdgeInsets.fromLTRB(50, 40, 50, 40),
+          )),
+        
+    );
+
+  } // build
+
+}
+
+
+//WRITE
+class WritePage extends StatelessWidget{
+
+  @override 
+  Widget build(BuildContext context){
+
+    return Scaffold(
+      appBar: AppBar(
+          title: Text('Write'),
+      ),
+
+      body: Stack(
+        children: [
+          uniformBg(),
+          Container(
+            child: SingleChildScrollView(
+              child:WriteBody()
+            ),
+            padding: EdgeInsets.all(15.0),
+          ),
+        ]
+      ),
+        
+    );
+
+  } // build
+
+}

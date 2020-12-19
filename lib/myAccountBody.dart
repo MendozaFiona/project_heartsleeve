@@ -13,6 +13,10 @@ class MyAccountBody extends StatefulWidget {
 class AccountSettingsState extends State<MyAccountBody> {
   // final _formKey = GlobalKey<FormState>(); //-> if using form
   
+  void _login() {
+    Navigator.popAndPushNamed(context, "/");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,7 +38,12 @@ class AccountSettingsState extends State<MyAccountBody> {
 
       Padding(
         padding: EdgeInsets.only(right:10.0),
-        child:customButton("LOG OUT", Color.fromRGBO(160, 127, 136, 1))
+
+        child: GestureDetector(
+          child:customButton("LOG OUT", Color.fromRGBO(160, 127, 136, 1)),
+          onTap: _login,
+        )
+      
       ),
     ],
   );
