@@ -28,7 +28,7 @@ class EditFormState extends State<EditBody> {
     super.dispose();
   }
 
-  _register(){
+  _saveChanges(){
     if (_formKey.currentState.validate()) {
       Scaffold
         .of(context).showSnackBar(
@@ -102,10 +102,14 @@ class EditFormState extends State<EditBody> {
 
           emptySpace(25.0),
 
+          //validate too if input already exists in database
           GestureDetector(
             child: customButton("save changes", Color.fromRGBO(212, 106, 146, 1),
                 MainAxisAlignment.center),
-            onTap: _isAccepted?_register:null, //change
+            onTap: _saveChanges,
+            //_isAccepted?_saveChanges:null -> maybe change _isAccepted to
+            //a method that compares if input already exists
+            //or compare if no changes made~
           )
         ],
       ),
