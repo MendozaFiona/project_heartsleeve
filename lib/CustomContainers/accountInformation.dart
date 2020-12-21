@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:heartsleeve/PagesBody/myAccountBody.dart';
-import 'package:heartsleeve/essentials.dart';
-import 'package:heartsleeve/pages.dart';
+
+import '../essentials.dart';
 
 //GET FROM DATABASE
 String _defaultName = "You haven't input a name yet",
@@ -15,12 +14,6 @@ changeName() {
   _defEmail = " " + "Se******an@gmail.com";
   _defBday = " " + "October 29, 2001";
 }
-
-_reroute() {
-  print("passed reroute");
-  //Navigator.popAndPushNamed(context, "/edit");
-  print("passed post reroute");
-} //delete after
 
 //USE PROVIDER FOR THIS!!!!
 
@@ -36,6 +29,9 @@ accountInfo() {
         //SizedBox(width: 170)
       ], // children
     ),
+
+    emptySpace(8.0),
+
     Row(
       children: [
         Text('username:', textAlign: TextAlign.left),
@@ -43,6 +39,9 @@ accountInfo() {
         //SizedBox(width: 120)
       ], // children
     ),
+
+    emptySpace(8.0),
+
     Row(
       children: [
         Text('email:', textAlign: TextAlign.left),
@@ -50,6 +49,9 @@ accountInfo() {
         //SizedBox(width:170)
       ], // children
     ),
+
+    emptySpace(8.0),
+
     Row(
       children: [
         Text('birthday:', textAlign: TextAlign.left),

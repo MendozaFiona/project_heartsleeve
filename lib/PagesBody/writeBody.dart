@@ -79,7 +79,7 @@ class DiaryEntryFormState extends State<WriteBody> {
             },
           ),
           emptySpace(),
-          customButton("done", Color.fromRGBO(160, 127, 136, 1)),
+          customButton("done", Color.fromRGBO(106, 65, 98, 1)),
         ],
       ),
     );

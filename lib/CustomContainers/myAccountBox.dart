@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:heartsleeve/CustomContainers/accountInformation.dart';
-import 'privacySafety.dart';
 
 class MyAccountBox extends StatelessWidget {
   final String fxn;
@@ -10,7 +9,7 @@ class MyAccountBox extends StatelessWidget {
   const MyAccountBox({this.fxn, this.heightBox});
 
   //GET FROM DATABASE
-  _test() {
+  /*_test() {
     var _testFxn = this.fxn;
     //return accountInfo();
     if (_testFxn == "accountInfo") {
@@ -18,7 +17,7 @@ class MyAccountBox extends StatelessWidget {
     } else if (_testFxn == "privacySafety") {
       return privacySafety();
     }
-  }
+  }*/
 
   _getHeight() {
     return this.heightBox;
@@ -31,7 +30,7 @@ class MyAccountBox extends StatelessWidget {
     //final _
     return InkWell(
       child: Padding(
-          padding: EdgeInsets.only(bottom: 3.0),
+          padding: EdgeInsets.only(bottom: 5.0),
           child: Align(
               alignment: Alignment.center,
               child: Container(
@@ -39,7 +38,7 @@ class MyAccountBox extends StatelessWidget {
 
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(20, 10, 5, 10),
-                  child: _test(), //this should be dynamic
+                  child: SingleChildScrollView(child:accountInfo()), //this should be dynamic
                 ),
 
                 decoration: BoxDecoration(

@@ -23,8 +23,9 @@ class MyAccountBody extends StatelessWidget {
         //THESE ARE TEMPORARY, PLACEHOLDERS
 
         TitleBox(
-          defaultTitle: "ACCOUNT INFORMATION",
+          defaultTitle: "account information",
         ),
+        
 
         MyAccountBox(
           fxn: "accountInfo",
@@ -36,7 +37,7 @@ class MyAccountBody extends StatelessWidget {
             Expanded(
               child: GestureDetector(
                 child: customButton(
-                    "edit", Color.fromRGBO(160, 127, 136, 1), MainAxisAlignment.center, 16.0),
+                    "edit", Color.fromRGBO(106, 65, 98, 1), MainAxisAlignment.center, 18.0),
                 onTap: _accEdit,
             ))
           ], // children
@@ -45,29 +46,13 @@ class MyAccountBody extends StatelessWidget {
         emptySpace(8.0),
 
         TitleBox(
-          defaultTitle: "PRIVACY AND SAFETY",
+          defaultTitle: "change my password",
         ),
 
-        MyAccountBox(
-          fxn: "privacySafety",
-          heightBox: 120.0,
-        ),
-        
-        Row(
-          children: [
-            Expanded(
-              child: GestureDetector(
-                child: customButton(
-                    "edit", Color.fromRGBO(160, 127, 136, 1), MainAxisAlignment.center, 16.0),
-                onTap: _accEdit,
-            ))
-          ], // children
-        ), //clicking edit should automatically change setting
-
-        emptySpace(8.0),
+        emptySpace(5.0),
 
         TitleBox(
-          defaultTitle: "DELETE MY ACCOUNT",
+          defaultTitle: "delete my account",
         ),
 
         emptySpace(10.0),
@@ -75,7 +60,7 @@ class MyAccountBody extends StatelessWidget {
         Padding(
             padding: EdgeInsets.only(right: 10.0),
             child: GestureDetector(
-              child: customButton("log out", Color.fromRGBO(160, 127, 136, 1)),
+              child: customButton("log out", Color.fromRGBO(106, 65, 98, 1)),
               onTap: _login,
             )),
       ],

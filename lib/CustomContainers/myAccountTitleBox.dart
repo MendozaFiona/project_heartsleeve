@@ -37,7 +37,7 @@ class TitleBox extends StatelessWidget {
                   color: Color.fromRGBO(160, 127, 136, 0.7),
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               width: MediaQuery.of(context).size.width * 0.9,
-              height: 35.0 /*MediaQuery.of(context).size.height * 0.05*/,
+              height: 40.0 /*MediaQuery.of(context).size.height * 0.05*/,
             )));
   }
 }

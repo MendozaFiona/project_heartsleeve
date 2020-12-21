@@ -6,7 +6,6 @@ Widget customButton(
     _defaultClr = Colors.white,
     _axAlign = MainAxisAlignment.end,
     _fSize = 20.0]) {
-  
   return Row(
     mainAxisAlignment: _axAlign,
     //crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,16 +45,19 @@ SizedBox emptySpace([customHeight = 20.0]) {
   );
 }
 
-TagsStyler tagStyleDecor(){
+TagsStyler tagStyleDecor() {
   return TagsStyler(
-    //tagTextStyle: TextStyle(fontWeight: FontWeight.bold),
-    tagDecoration: BoxDecoration(color: Color.fromRGBO(254, 250, 250, 1), borderRadius: BorderRadius.circular(8.0), ),
-    tagCancelIcon: Icon(Icons.cancel, size: 18.0, color: Color.fromRGBO(106, 65, 98, 1)),
-    tagPadding: const EdgeInsets.all(6.0)
-  );
+      //tagTextStyle: TextStyle(fontWeight: FontWeight.bold),
+      tagDecoration: BoxDecoration(
+        color: Color.fromRGBO(254, 250, 250, 1),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      tagCancelIcon:
+          Icon(Icons.cancel, size: 18.0, color: Color.fromRGBO(106, 65, 98, 1)),
+      tagPadding: const EdgeInsets.all(6.0));
 }
 
-TextFieldStyler tagFieldDecor(){
+TextFieldStyler tagFieldDecor() {
   return TextFieldStyler(
     hintText: "#tags",
     textFieldBorder:
@@ -67,6 +69,23 @@ TextFieldStyler tagFieldDecor(){
 
     textFieldFilledColor: Color.fromRGBO(160, 127, 136, 0.7),
     textFieldFilled: true,
+  );
+}
+
+Padding labelTxt(lblStr) {
+  return Padding(
+    padding: EdgeInsets.fromLTRB(3, 0, 0, 5),
+    child:Row( 
+      children: [Text(
+        lblStr,
+        style: TextStyle(
+          color: Color.fromRGBO(106, 65, 98, 1),
+          fontWeight: FontWeight.bold,
+        ),
+        textAlign: TextAlign.left,
+      
+      )
+    ])
   );
 }
 
@@ -88,18 +107,13 @@ validateForm([inputExp, String _errResponse = "Invalid Input", String fType]) {
   return (value) {
     if (value.isEmpty) {
       return "This field is required";
-    }
-    
-    else if (fType == "confirm"){
+    } else if (fType == "confirm") {
       print(inputExp);
-      if (inputExp != value){
+      if (inputExp != value) {
         return _errResponse;
       }
-
-    }
-
-    else if (inputExp.hasMatch(value) == false) {
-        return _errResponse;
+    } else if (inputExp.hasMatch(value) == false) {
+      return _errResponse;
     }
 
     return null;

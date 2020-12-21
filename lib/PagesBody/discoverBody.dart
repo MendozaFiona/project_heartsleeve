@@ -26,16 +26,17 @@ class DiscoverBody extends StatelessWidget{
         return Column(
           children: [
             
-            MyAccountBox(heightBox: 60.0,),
+            MyAccountBox(heightBox: 70.0,),
 
             TitleBox(defaultTitle: "temp title of entry"),        
 
-            DiscoverEntry(),
+            //pay attention to this
+            SingleChildScrollView(child: DiscoverEntry()),
             
             Row (
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                customButton("another", Color.fromRGBO(160, 127, 136, 1)),
+                customButton("another", Color.fromRGBO(106, 65, 98, 1)),
                 IconButton(
                   icon: Icon(
                     /*(bookmark.bookmarks.contains(compare index))*/ //23:00 provider, continue

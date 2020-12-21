@@ -59,66 +59,53 @@ class EditFormState extends State<EditBody> {
               fit: BoxFit.cover,
             ),
           ])),
-          emptySpace(10.0),
+
+          emptySpace(15.0),
+
+          labelTxt("first name"),
+
           TextFormField(
             decoration: formatDecor('first name'),
             maxLines: 1,
             validator: validateForm(nameExp),
           ),
+
           emptySpace(5.0),
+
+          labelTxt("last name"),
+
           TextFormField(
             decoration: formatDecor('last name'),
             maxLines: 1,
             validator: validateForm(nameExp),
           ),
+
           emptySpace(5.0),
+
+          labelTxt("username"),
+
           TextFormField(
             decoration: formatDecor('username'),
             maxLines: 1,
             validator: validateForm(unameExp),
           ),
+
           emptySpace(5.0),
+
+          labelTxt("email"),
+
           TextFormField(
             decoration: formatDecor('email'),
             maxLines: 1,
             validator: validateForm(emailExp, "Please enter a valid email"),
           ),
-          emptySpace(5.0),
-          TextFormField(
-            obscureText: true,
-            decoration: formatDecor('password'),
-            controller: passTxtController,
-            maxLines: 1,
-            validator:
-                validateForm(passExp, "Password must be 8-20 characters long"),
-          ),
-          emptySpace(5.0),
-          TextFormField(
-            obscureText: true,
-            decoration: formatDecor('confirm password'),
-            maxLines: 1,
-            validator: validateForm(passExp, "Password does not match"),
-          ),
-          emptySpace(6.0),
-          Row(
-            children: [
-              Checkbox(
-                value: _isAccepted,
-                onChanged: (isAccepted) {
-                  setState(() {
-                    _isAccepted = isAccepted;
-                  });
-                },
-              ),
-              Text(
-                  "By clicking Register, you agree to\nour terms and data policy")
-            ],
-          ),
-          emptySpace(8.0),
+
+          emptySpace(25.0),
+
           GestureDetector(
-            child: customButton("REGISTER", Color.fromRGBO(212, 106, 146, 1),
+            child: customButton("save changes", Color.fromRGBO(212, 106, 146, 1),
                 MainAxisAlignment.center),
-            onTap: _isAccepted?_register:null,
+            onTap: _isAccepted?_register:null, //change
           )
         ],
       ),
