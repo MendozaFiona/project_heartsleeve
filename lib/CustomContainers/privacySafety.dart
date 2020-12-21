@@ -52,16 +52,6 @@ privacySafety() {
       ], // children
     ),
     
-    emptySpace(10.0),
-    
-    Row(
-      children: [
-        Expanded(
-          child: customButton(
-              "edit", Colors.white, MainAxisAlignment.center, 16.0),
-        )
-      ], // children
-    )
   ]
   );
 

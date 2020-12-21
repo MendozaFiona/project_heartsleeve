@@ -80,7 +80,7 @@ class EditPage extends StatelessWidget{
           automaticallyImplyLeading: true,
           leading: IconButton(icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.popAndPushNamed(context, "/myAccount");
+              Navigator.pop(context);
             },
           )
       ),
@@ -167,8 +167,10 @@ class MyAccountPage extends StatelessWidget{
         children: [
           uniformBg(),
           Container(
-            child: MyAccountBody(),
-            padding: EdgeInsets.all(20.0),
+            child: SingleChildScrollView(
+              child:MyAccountBody(),
+              padding: EdgeInsets.all(20.0),
+            )
           ),
         ]
       ),

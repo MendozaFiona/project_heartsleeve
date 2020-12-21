@@ -2,34 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:heartsleeve/CustomContainers/accountInformation.dart';
 import 'privacySafety.dart';
 
-class MyAccountBox extends StatefulWidget {
+class MyAccountBox extends StatelessWidget {
   final String fxn;
   final double heightBox;
+  //final BuildContext userContext;
 
   const MyAccountBox({this.fxn, this.heightBox});
 
-  @override
-  AccountBoxState createState() {
-    return AccountBoxState();
-  }
-}
-
-class AccountBoxState extends State<MyAccountBox> {
   //GET FROM DATABASE
   _test() {
-    var _testFxn = widget.fxn;
+    var _testFxn = this.fxn;
     //return accountInfo();
     if (_testFxn == "accountInfo") {
       return accountInfo();
-    } else if(_testFxn == "privacySafety"){
+    } else if (_testFxn == "privacySafety") {
       return privacySafety();
     }
   }
 
-  _getHeight(){
-    return widget.heightBox;
+  _getHeight() {
+    return this.heightBox;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +31,7 @@ class AccountBoxState extends State<MyAccountBox> {
     //final _
     return InkWell(
       child: Padding(
-          padding: EdgeInsets.only(bottom: 10.0),
+          padding: EdgeInsets.only(bottom: 3.0),
           child: Align(
               alignment: Alignment.center,
               child: Container(

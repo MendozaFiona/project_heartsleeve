@@ -21,7 +21,7 @@ class TitleBox extends StatelessWidget {
     return Align(
         alignment: Alignment.center,
         child: Padding(
-            padding: EdgeInsets.only(bottom: 10.0),
+            padding: EdgeInsets.only(bottom: 5.0),
             child: Container(
               child: Row(
                 children: [

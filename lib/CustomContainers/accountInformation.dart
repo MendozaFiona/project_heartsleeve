@@ -16,9 +16,13 @@ changeName() {
   _defBday = " " + "October 29, 2001";
 }
 
-/*_edit() {
-  MyAccountBody._accEdit();
-}*/ //USE PROVIDER FOR THIS!!!!
+_reroute() {
+  print("passed reroute");
+  //Navigator.popAndPushNamed(context, "/edit");
+  print("passed post reroute");
+} //delete after
+
+//USE PROVIDER FOR THIS!!!!
 
 accountInfo() {
   changeName();
@@ -53,17 +57,6 @@ accountInfo() {
         //SizedBox(width:140)
       ], // children
     ),
-    emptySpace(10.0),
-    Row(
-      children: [
-        Expanded(
-            child: GestureDetector(
-          child: customButton(
-              "edit", Colors.white, MainAxisAlignment.center, 16.0),
-          /*onTap: 
-            _edit,*/
-        ))
-      ], // children
-    )
+    
   ]);
 }
