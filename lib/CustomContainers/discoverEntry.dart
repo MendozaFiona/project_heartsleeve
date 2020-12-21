@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DiscoverFilter extends StatelessWidget {
+class DiscoverEntry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
@@ -40,7 +40,7 @@ class DiscoverFilter extends StatelessWidget {
         ),
 
         width: MediaQuery.of(context).size.width * .95,
-        height: MediaQuery.of(context).size.height * .5,
+        height: MediaQuery.of(context).size.height * .45,
 
       )
     ),

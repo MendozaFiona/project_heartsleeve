@@ -9,8 +9,15 @@ class WriteBody extends StatefulWidget {
 }
 
 class DiaryEntryFormState extends State<WriteBody> {
-  final _formKey = GlobalKey<FormState>();
-  final inputCol = Color.fromRGBO(160, 127, 136, 0.7);
+  final _formKey = GlobalKey<FormState>(),
+  inputCol = Color.fromRGBO(160, 127, 136, 0.7),
+  writeTxtController = TextEditingController();
+
+  @override
+  void dispose() {
+    writeTxtController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +31,7 @@ class DiaryEntryFormState extends State<WriteBody> {
           TextFormField(
             decoration: formatDecor('title', inputCol),
             maxLines: 1,
+            controller: writeTxtController,
           ),
 
           emptySpace(),
@@ -42,7 +50,7 @@ class DiaryEntryFormState extends State<WriteBody> {
 
           emptySpace(),
 
-          customButton("DONE", Color.fromRGBO(160, 127, 136, 1)),
+          customButton("done", Color.fromRGBO(160, 127, 136, 1)),
 
         ],
       ),

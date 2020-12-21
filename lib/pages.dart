@@ -6,6 +6,8 @@ import 'package:heartsleeve/PagesBody/myAccountBody.dart';
 import 'package:heartsleeve/PagesBody/loginBody.dart';
 import 'package:heartsleeve/PagesBody/homeBody.dart';
 import 'package:heartsleeve/PagesBody/discoverBody.dart';
+import 'package:heartsleeve/PagesBody/myAccountEditBody.dart';
+import 'package:heartsleeve/PagesBody/bookmarksBody.dart';
 
 
 //BOOKMARKS
@@ -23,7 +25,7 @@ class BookmarksPage extends StatelessWidget{
         children: [
           uniformBg(),
           Container(
-            child: homeBody(), //both home and bookmarks have same layout, different data
+            child: bookmarksBody(), //both home and bookmarks have same layout, different data
             padding: EdgeInsets.all(15.0),
           ),
         ]
@@ -54,10 +56,41 @@ class DiscoverPage extends StatelessWidget{
             child: SingleChildScrollView(
               child:DiscoverBody()
             ),
-            padding: EdgeInsets.all(15.0),
+            padding: EdgeInsets.all(20.0),
           ),
         ]
       ),
+        
+    );
+
+  } // build
+
+}
+
+
+//MYACCOUNT EDIT
+class EditPage extends StatelessWidget{
+
+  @override 
+  Widget build(BuildContext context){
+
+    return Scaffold(
+      appBar: AppBar(
+          title: Text('Edit'),
+          automaticallyImplyLeading: true,
+          leading: IconButton(icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.popAndPushNamed(context, "/myAccount");
+            },
+          )
+      ),
+
+      body: 
+          Container(
+            child: SingleChildScrollView(
+              child:EditBody(),
+              padding: EdgeInsets.fromLTRB(50, 40, 50, 40),
+          )),
         
     );
 

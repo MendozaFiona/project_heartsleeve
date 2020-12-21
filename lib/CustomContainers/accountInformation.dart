@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:heartsleeve/PagesBody/myAccountBody.dart';
 import 'package:heartsleeve/essentials.dart';
+import 'package:heartsleeve/pages.dart';
 
 //GET FROM DATABASE
 String _defaultName = "You haven't input a name yet",
@@ -8,18 +10,21 @@ String _defaultName = "You haven't input a name yet",
     _defBday = "No birthday information saved";
 
 changeName() {
-    _defaultName = " " + "Juan dela Cruz";
-    _defUname = " " + "SecretJuan";
-    _defEmail = " " + "Se******an@gmail.com";
-    _defBday = " " + "October 29, 2001";
+  _defaultName = " " + "Juan dela Cruz";
+  _defUname = " " + "SecretJuan";
+  _defEmail = " " + "Se******an@gmail.com";
+  _defBday = " " + "October 29, 2001";
 }
+
+/*_edit() {
+  MyAccountBody._accEdit();
+}*/ //USE PROVIDER FOR THIS!!!!
 
 accountInfo() {
   changeName();
 
   //final _
   return Column(children: [
-                    
     Row(
       children: [
         Text('name:', textAlign: TextAlign.left),
@@ -27,7 +32,6 @@ accountInfo() {
         //SizedBox(width: 170)
       ], // children
     ),
-    
     Row(
       children: [
         Text('username:', textAlign: TextAlign.left),
@@ -35,7 +39,6 @@ accountInfo() {
         //SizedBox(width: 120)
       ], // children
     ),
-    
     Row(
       children: [
         Text('email:', textAlign: TextAlign.left),
@@ -43,7 +46,6 @@ accountInfo() {
         //SizedBox(width:170)
       ], // children
     ),
-    
     Row(
       children: [
         Text('birthday:', textAlign: TextAlign.left),
@@ -51,18 +53,17 @@ accountInfo() {
         //SizedBox(width:140)
       ], // children
     ),
-    
     emptySpace(10.0),
-    
     Row(
       children: [
         Expanded(
+            child: GestureDetector(
           child: customButton(
-              "EDIT", Colors.white, MainAxisAlignment.center, 16.0),
-        )
+              "edit", Colors.white, MainAxisAlignment.center, 16.0),
+          /*onTap: 
+            _edit,*/
+        ))
       ], // children
     )
-  ]
-  );
-
+  ]);
 }

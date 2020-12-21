@@ -58,7 +58,7 @@ privacySafety() {
       children: [
         Expanded(
           child: customButton(
-              "EDIT", Colors.white, MainAxisAlignment.center, 16.0),
+              "edit", Colors.white, MainAxisAlignment.center, 16.0),
         )
       ], // children
     )

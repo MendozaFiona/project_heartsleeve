@@ -1,55 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:heartsleeve/sortmenu.dart';
+import 'package:heartsleeve/CustomContainers/myAccountBox.dart';
+import 'package:heartsleeve/CustomContainers/myAccountTitleBox.dart';
+//import 'package:heartsleeve/PagesBody/homeBody.dart';
+import 'package:provider/provider.dart';
+
+import 'package:heartsleeve/CustomContainers/sortMenu.dart';
 import 'package:heartsleeve/essentials.dart';
-import 'package:heartsleeve/CustomContainers/discoverFilter.dart';
+import 'package:heartsleeve/CustomContainers/discoverEntry.dart';
+import 'package:heartsleeve/Models/bookmarksModel.dart';
+//import 'package:heartsleeve/CustomContainers/diaryPreview.dart';
 
-class DiscoverBody extends StatefulWidget {
-  @override
-  DiscoverSearchBarState createState() {
-    return DiscoverSearchBarState();
-  }
-}
-
-class DiscoverSearchBarState extends State<DiscoverBody> {
-  final _formKey = GlobalKey<FormState>();
+//CHANGE THIS TO A RANDOM DIARY ENTRY PROVIDER~~~
+class DiscoverBody extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
 
-          TextFormField(
-            decoration: formatDecor('keyword/s'),
-            maxLines: 1,
-          ),
+    //final _publicEntries = List<String>.generate(10, (i) => "Entry ${i + 1}");
 
-          emptySpace(10.0),
+    return Consumer<BookmarksModel>(
+      builder: (context, bookmark, child){
 
-          SortMenu(),
+        var publicEntryID = 1; // change to acquiring id from database
 
-          DiscoverFilter(),
-          
-          /*TextFormField(
-            decoration: formatDecor('write something...'),
-            maxLines: 13,
-          ),*/
+        return Column(
+          children: [
 
-          //THIS SHOULD NOT BE A TEST FORM FIELD
+            TitleBox(defaultTitle: "temp title of entry"),        
 
-          //emptySpace(),
-          emptySpace(7.0),
+            DiscoverEntry(),
 
-          customButton("SEARCH", Color.fromRGBO(160, 127, 136, 1)),
+            MyAccountBox(heightBox: 60.0,),
 
-          /*Container(
-            child: ,
-          )*/
+            Row (
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                customButton("another", Color.fromRGBO(160, 127, 136, 1)),
+                IconButton(
+                  icon: Icon(
+                    /*(bookmark.bookmarks.contains(compare index))*/ //23:00 provider, continue
+                    Icons.favorite,
+                    size: 30.0,
+                    color: Color.fromRGBO(160, 127, 136, 1),
+                  ),
+                  onPressed: (){
+                    //COMPARE IF PUBLICENTRY ID MATCHES ANY IN THE BOOKMARKS PAGE
+                    /*if(bookmark.bookmarks.contains(compare index)){
+                        bookmark.remove(index here);
+                      } else {
+                        bookmark.add(index here);
+                      }*/
 
-        ],
-      ),
+                    print("like");
+                  
+                  },
+                )
+              
+            ])
+
+          ],
+        );
+
+      }
     );
+    
+  
   } // build
 
 }

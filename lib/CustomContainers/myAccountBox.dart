@@ -4,8 +4,9 @@ import 'privacySafety.dart';
 
 class MyAccountBox extends StatefulWidget {
   final String fxn;
+  final double heightBox;
 
-  const MyAccountBox({this.fxn});
+  const MyAccountBox({this.fxn, this.heightBox});
 
   @override
   AccountBoxState createState() {
@@ -16,14 +17,19 @@ class MyAccountBox extends StatefulWidget {
 class AccountBoxState extends State<MyAccountBox> {
   //GET FROM DATABASE
   _test() {
-    var _test = widget.fxn;
+    var _testFxn = widget.fxn;
     //return accountInfo();
-    if (_test == "accountInfo") {
+    if (_testFxn == "accountInfo") {
       return accountInfo();
-    } else {
+    } else if(_testFxn == "privacySafety"){
       return privacySafety();
     }
   }
+
+  _getHeight(){
+    return widget.heightBox;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +54,7 @@ class AccountBoxState extends State<MyAccountBox> {
                     borderRadius: BorderRadius.all(Radius.circular(15))),
 
                 width: MediaQuery.of(context).size.width * .9,
-                height: 120.0,
+                height: _getHeight(),
               ))),
       /*onTap: () {
         print("you tapped this");

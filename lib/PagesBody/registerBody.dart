@@ -28,13 +28,21 @@ class RegisterFormState extends State<RegisterBody> {
     super.dispose();
   }
 
-  _register(){
-    if (_formKey.currentState.validate()) {
-      Scaffold
-        .of(context).showSnackBar(
-          SnackBar(content: Text("Saving...")));
-    }
+  @override
+  void initState() {
+    super.initState();
 
+    passTxtController.addListener(_getConfirmPass);
+  }
+
+  _getConfirmPass() {
+    print("${passTxtController.text}");
+  }
+
+  _register() {
+    if (_formKey.currentState.validate()) {
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text("Saving...")));
+    }
   }
 
   @override
@@ -88,6 +96,7 @@ class RegisterFormState extends State<RegisterBody> {
             obscureText: true,
             decoration: formatDecor('password'),
             controller: passTxtController,
+            //onChanged: ,
             maxLines: 1,
             validator:
                 validateForm(passExp, "Password must be 8-20 characters long"),
@@ -97,7 +106,8 @@ class RegisterFormState extends State<RegisterBody> {
             obscureText: true,
             decoration: formatDecor('confirm password'),
             maxLines: 1,
-            validator: validateForm(passExp, "Password does not match"),
+            validator:
+                validateForm(passTxtController.text, "Password does not match", "confirm"),
           ),
           emptySpace(6.0),
           Row(
@@ -118,7 +128,7 @@ class RegisterFormState extends State<RegisterBody> {
           GestureDetector(
             child: customButton("REGISTER", Color.fromRGBO(212, 106, 146, 1),
                 MainAxisAlignment.center),
-            onTap: _isAccepted?_register:null,
+            onTap: _isAccepted ? _register : null,
           )
         ],
       ),

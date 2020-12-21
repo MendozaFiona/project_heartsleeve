@@ -17,6 +17,10 @@ class AccountSettingsState extends State<MyAccountBody> {
     Navigator.popAndPushNamed(context, "/");
   }
 
+  void accEdit() { //cant be accessed SHOULD USE A PROVIDER
+    Navigator.popAndPushNamed(context, "/edit");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,11 +30,11 @@ class AccountSettingsState extends State<MyAccountBody> {
 
       TitleBox(defaultTitle: "ACCOUNT INFORMATION",),
 
-      MyAccountBox(fxn: "accountInfo"), //clicking edit should redirect to a profile edit page
+      MyAccountBox(fxn: "accountInfo", heightBox: 120.0,), //clicking edit should redirect to a profile edit page
 
       TitleBox(defaultTitle: "PRIVACY AND SAFETY",),
 
-      MyAccountBox(fxn: "privacySafety",), //clicking edit should automatically change setting
+      MyAccountBox(fxn: "privacySafety", heightBox: 120.0,), //clicking edit should automatically change setting
 
       TitleBox(defaultTitle: "DELETE MY ACCOUNT",),
 
@@ -40,7 +44,7 @@ class AccountSettingsState extends State<MyAccountBody> {
         padding: EdgeInsets.only(right:10.0),
 
         child: GestureDetector(
-          child:customButton("LOG OUT", Color.fromRGBO(160, 127, 136, 1)),
+          child:customButton("log out", Color.fromRGBO(160, 127, 136, 1)),
           onTap: _login,
         )
       

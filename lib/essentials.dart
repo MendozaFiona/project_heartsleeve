@@ -8,6 +8,7 @@ Widget customButton(
   
   return Row(
     mainAxisAlignment: _axAlign,
+    //crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Text(btnTxt, style: TextStyle(color: _defaultClr, fontSize: _fSize)),
       SizedBox(width: 3),
@@ -65,9 +66,11 @@ validateForm([inputExp, String _errResponse = "Invalid Input", String fType]) {
     }
     
     else if (fType == "confirm"){
+      print(inputExp);
       if (inputExp != value){
         return _errResponse;
       }
+
     }
 
     else if (inputExp.hasMatch(value) == false) {

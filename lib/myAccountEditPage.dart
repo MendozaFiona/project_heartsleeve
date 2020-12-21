@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heartsleeve/PagesBody/registerBody.dart';
+import 'package:heartsleeve/PagesBody/myAccountEditBody.dart';
 
 class EditPage extends StatelessWidget{
 
@@ -20,7 +20,7 @@ class EditPage extends StatelessWidget{
       body: 
           Container(
             child: SingleChildScrollView(
-              child:RegisterBody(),
+              child:EditBody(),
               padding: EdgeInsets.fromLTRB(50, 40, 50, 40),
           )),
         
