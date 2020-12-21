@@ -15,6 +15,10 @@ class DiaryEntryFormState extends State<WriteBody> {
       inputCol = Color.fromRGBO(160, 127, 136, 0.7),
       titleTxtController = TextEditingController(),
       bodyTxtController = TextEditingController();
+
+  var _writeTitle, _writeTxtBody;
+
+  //DiaryEntryFormState(this._writeTitle, this._writeTxtBody);
   //tagsTxtController = TextEditingController();
 
   @override
@@ -32,7 +36,14 @@ class DiaryEntryFormState extends State<WriteBody> {
 
   _delTagList(tag) {
     _userTags.remove(tag);
-    //_userTags.clear();
+  }
+
+  _getTitle() {
+    _writeTitle = titleTxtController.text;
+  }
+
+  _getTxtBody(){
+    _writeTxtBody = bodyTxtController.text;
   }
 
   @override
@@ -53,26 +64,15 @@ class DiaryEntryFormState extends State<WriteBody> {
             controller: bodyTxtController,
           ),
           emptySpace(),
-
-          /*TextFormField(
-            decoration: formatDecor('#tags', inputCol),
-            maxLines: 2,
-            controller: tagsTxtController,
-          ),*/
-
           TextFieldTags(
-            //initialTags: <String>[],
             tagsStyler: tagStyleDecor(),
-
             textFieldStyler: tagFieldDecor(),
-
             onTag: (tag) {
-              if(!_userTags.contains(tag)){
+              if (!_userTags.contains(tag)) {
                 _addTagList(tag);
               }
               print(_userTags);
             },
-
             onDelete: (tag) {
               _delTagList(tag);
               print(_userTags); //tag gives the value!
