@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:textfield_tags/textfield_tags.dart';
 
 Widget customButton(
     [btnTxt = 'default',
@@ -42,6 +43,30 @@ InputDecoration formatDecor(var str, [fillCol = Colors.white]) {
 SizedBox emptySpace([customHeight = 20.0]) {
   return SizedBox(
     height: customHeight,
+  );
+}
+
+TagsStyler tagStyleDecor(){
+  return TagsStyler(
+    //tagTextStyle: TextStyle(fontWeight: FontWeight.bold),
+    tagDecoration: BoxDecoration(color: Color.fromRGBO(254, 250, 250, 1), borderRadius: BorderRadius.circular(8.0), ),
+    tagCancelIcon: Icon(Icons.cancel, size: 18.0, color: Color.fromRGBO(106, 65, 98, 1)),
+    tagPadding: const EdgeInsets.all(6.0)
+  );
+}
+
+TextFieldStyler tagFieldDecor(){
+  return TextFieldStyler(
+    hintText: "#tags",
+    textFieldBorder:
+        OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+
+    contentPadding: EdgeInsets.fromLTRB(15, 8, 15, 8),
+
+    //hintStyle: TextStyle(fontSize: 16.0, height: 2.0),
+
+    textFieldFilledColor: Color.fromRGBO(160, 127, 136, 0.7),
+    textFieldFilled: true,
   );
 }
 

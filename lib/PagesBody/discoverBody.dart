@@ -4,7 +4,7 @@ import 'package:heartsleeve/CustomContainers/myAccountTitleBox.dart';
 //import 'package:heartsleeve/PagesBody/homeBody.dart';
 import 'package:provider/provider.dart';
 
-import 'package:heartsleeve/CustomContainers/sortMenu.dart';
+//import 'package:heartsleeve/CustomContainers/sortMenu.dart';
 import 'package:heartsleeve/essentials.dart';
 import 'package:heartsleeve/CustomContainers/discoverEntry.dart';
 import 'package:heartsleeve/Models/bookmarksModel.dart';
@@ -25,13 +25,13 @@ class DiscoverBody extends StatelessWidget{
 
         return Column(
           children: [
+            
+            MyAccountBox(heightBox: 60.0,),
 
             TitleBox(defaultTitle: "temp title of entry"),        
 
             DiscoverEntry(),
-
-            MyAccountBox(heightBox: 60.0,),
-
+            
             Row (
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

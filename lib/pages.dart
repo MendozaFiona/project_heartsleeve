@@ -26,7 +26,7 @@ class BookmarksPage extends StatelessWidget{
           uniformBg(),
           Container(
             child: bookmarksBody(), //both home and bookmarks have same layout, different data
-            padding: EdgeInsets.all(15.0),
+            padding: EdgeInsets.all(20.0),
           ),
         ]
       ),
@@ -115,7 +115,7 @@ class HomePage extends StatelessWidget{
           uniformBg(),
           Container(
             child: homeBody(),
-            padding: EdgeInsets.all(15.0),
+            padding: EdgeInsets.all(20.0),
           ),
         ]
       ),
@@ -168,7 +168,7 @@ class MyAccountPage extends StatelessWidget{
           uniformBg(),
           Container(
             child: MyAccountBody(),
-            padding: EdgeInsets.all(15.0),
+            padding: EdgeInsets.all(20.0),
           ),
         ]
       ),
@@ -229,7 +229,7 @@ class WritePage extends StatelessWidget{
             child: SingleChildScrollView(
               child:WriteBody()
             ),
-            padding: EdgeInsets.all(15.0),
+            padding: EdgeInsets.all(20.0),
           ),
         ]
       ),
