@@ -119,3 +119,14 @@ validateForm([inputExp, String _errResponse = "Invalid Input", String fType]) {
     return null;
   };
 }
+
+validateLogin([String _errResponse = "Invalid Input"]){
+  
+  return (value) {
+    if (value.isEmpty) {
+      return _errResponse;
+    }
+    return null;
+  };
+
+}

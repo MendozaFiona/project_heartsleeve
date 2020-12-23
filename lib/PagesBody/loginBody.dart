@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:heartsleeve/essentials.dart';
+import 'package:provider/provider.dart';
+import 'package:heartsleeve/Models/authModel.dart';
+import 'package:heartsleeve/Services/loginService.dart';
 
 class LoginBody extends StatefulWidget {
   @override
@@ -9,8 +12,12 @@ class LoginBody extends StatefulWidget {
 }
 
 class LoginFormState extends State<LoginBody> {
-  final _formKey = GlobalKey<FormState>();
-  final inputCol = Color.fromRGBO(160, 127, 136, 0.7);
+  final _formKey = GlobalKey<FormState>(),
+      inputCol = Color.fromRGBO(160, 127, 136, 0.7),
+      passTxtController = TextEditingController(),
+      emailTxtController = TextEditingController();
+
+  //String _errMsg = "";
 
   void _register() {
     Navigator.popAndPushNamed(context, "/register");
@@ -18,6 +25,31 @@ class LoginFormState extends State<LoginBody> {
 
   void _btmNav() {
     Navigator.popAndPushNamed(context, "/btmNav");
+  }
+
+  _login() async {
+    if (_formKey.currentState.validate()) {
+      String email = emailTxtController.text;
+      String password = passTxtController.text;
+
+      var loginResponse = await authenticate(email,password);
+
+      if(loginResponse.errMsg == null){
+        print(loginResponse.token);
+        Provider.of<AuthModel>(context, listen: false).login(loginResponse.token);
+        _btmNav();
+      }
+      else{
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text("${loginResponse.errMsg}",
+            style: TextStyle(
+              color: Color.fromRGBO(243, 157, 182, 1)
+            ),))
+        );
+      }
+      
+      
+    }
   }
 
   @override
@@ -44,36 +76,33 @@ class LoginFormState extends State<LoginBody> {
           ),
           emptySpace(),
           TextFormField(
-            decoration: formatDecor('username'),
+            decoration: formatDecor('email'),
+            controller: emailTxtController,
+            validator: validateLogin("Enter email"),
             maxLines: 1,
           ),
           emptySpace(10.0),
           TextFormField(
             obscureText: true,
             decoration: formatDecor('password'),
+            controller: passTxtController,
+            validator: validateLogin("Enter password"),
             maxLines: 1,
           ),
           emptySpace(25.0),
-          
           GestureDetector(
-            child:customButton("ENTER", Color.fromRGBO(212, 106, 146, 1),
-              MainAxisAlignment.center),
-
-            onTap: _btmNav,
-          
+            child: customButton("ENTER", Color.fromRGBO(212, 106, 146, 1),
+                MainAxisAlignment.center),
+            onTap: _login,
           ),
-          
           emptySpace(10.0),
-          
           GestureDetector(
               child: Text(
                 "Register Now",
                 style: TextStyle(
                     fontSize: 14, color: Color.fromRGBO(160, 127, 136, 1)),
               ),
-              onTap: _register
-          )
-
+              onTap: _register)
         ],
       ),
     );

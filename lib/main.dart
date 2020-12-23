@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 
 import 'package:heartsleeve/btmNavigation.dart';
 import 'package:heartsleeve/pages.dart';
+
+import 'Models/authModel.dart';
 import 'Models/bookmarksModel.dart';
 
 void main() {
@@ -19,12 +21,16 @@ class HeartSleeveApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
 
-    return ChangeNotifierProvider(
-      create: (context) => BookmarksModel(),
+    return MultiProvider(
+      providers:[
+        ChangeNotifierProvider(create: (context) => AuthModel()),
+        //Provider(create: (context) => BookmarksModel()),
+      ],
+      
       child: MaterialApp(
         title: 'heartsleeve',
         theme: ThemeData(primaryColor: Color.fromRGBO(106, 65, 98, 1)),
-        home: LoginPage(),
+        home: BottomNavBar(),
         routes: {
           '/register': (context) => RegisterPage(),
           '/btmNav': (context) => BottomNavBar(),

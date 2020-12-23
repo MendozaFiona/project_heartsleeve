@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:heartsleeve/CustomContainers/myAccountBox.dart';
 import 'package:heartsleeve/CustomContainers/myAccountTitleBox.dart';
 import 'package:heartsleeve/essentials.dart';
-
+import 'package:provider/provider.dart';
+import 'package:heartsleeve/Models/authModel.dart';
 
 class MyAccountBody extends StatelessWidget {
   // final _formKey = GlobalKey<FormState>(); //-> if using form
@@ -11,6 +12,7 @@ class MyAccountBody extends StatelessWidget {
   Widget build(BuildContext context) {
 
     void _login() {
+      Provider.of<AuthModel>(context, listen: false).logout();
       Navigator.popAndPushNamed(context, "/");
     }
 

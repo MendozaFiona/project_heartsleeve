@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:heartsleeve/pages.dart';
+import 'package:provider/provider.dart';
+import 'Models/authModel.dart';
 
 class BottomNavBar extends StatefulWidget {
   @override
@@ -26,6 +28,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
+
+    if(!Provider.of<AuthModel>(context, listen:false).isLoggedIn){
+      return LoginPage();
+    }
+
     return Scaffold(
         body: _children[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
