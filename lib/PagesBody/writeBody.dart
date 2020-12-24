@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:heartsleeve/essentials.dart';
 import 'package:textfield_tags/textfield_tags.dart';
+import 'package:heartsleeve/Services/diaryEntryService.dart';
+import 'package:heartsleeve/JsonModels/diaryEntry.dart';
+import 'package:provider/provider.dart';
+import 'package:heartsleeve/Models/authModel.dart';
 
 class WriteBody extends StatefulWidget {
   @override
@@ -13,18 +17,21 @@ class DiaryEntryFormState extends State<WriteBody> {
   final _formKey = GlobalKey<FormState>(),
       _userTags = [],
       inputCol = Color.fromRGBO(160, 127, 136, 0.7),
-      titleTxtController = TextEditingController(),
-      bodyTxtController = TextEditingController();
+      _titleTxtController = TextEditingController(),
+      _bodyTxtController = TextEditingController();
 
   var _writeTitle, _writeTxtBody;
 
-  //DiaryEntryFormState(this._writeTitle, this._writeTxtBody);
-  //tagsTxtController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   void dispose() {
-    titleTxtController.dispose();
-    bodyTxtController.dispose();
+    _titleTxtController.dispose();
+    _bodyTxtController.dispose();
     //tagsTxtController.dispose();
 
     super.dispose();
@@ -39,15 +46,69 @@ class DiaryEntryFormState extends State<WriteBody> {
   }
 
   _getTitle() {
-    _writeTitle = titleTxtController.text;
+    _writeTitle = _titleTxtController.text;
+    return _writeTitle;
   }
 
-  _getTxtBody(){
-    _writeTxtBody = bodyTxtController.text;
+  _getTxtBody() {
+    _writeTxtBody = _bodyTxtController.text;
+    return _writeTxtBody;
+  }
+
+  _checkArray(){
+    if(_userTags.length == null){
+      Scaffold.of(context).showSnackBar(SnackBar(
+            content: Text("Tags warn readers of your content. PLease don't leave it blank.",
+              style: TextStyle(
+                color: Color.fromRGBO(243, 157, 182, 1)
+              ),))
+          );
+    }
+  }
+
+  _save(_token) async {
+
+    if (_formKey.currentState.validate()) {
+      if(_userTags.length == 0){
+        Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text("Tags warn readers of your content. Please don't leave it blank.",
+                style: TextStyle(
+                  color: Color.fromRGBO(243, 157, 182, 1)
+                ),))
+            );
+      }
+
+      else{
+        var _title = _getTitle();
+        var _content = _getTxtBody();
+
+        Map writeData = {
+          'title': _title,
+          'content': _content,
+        };
+
+        for (int i = 0; i < _userTags.length; i++) {
+          writeData['tags[$i]'] = _userTags[i];
+        }
+
+        try {
+          var diaryResponse = await addEntry(writeData, _token);
+          Scaffold.of(context).showSnackBar(SnackBar(content: Text("Saving...")));
+          Navigator.pop(context, diaryResponse.message);
+        } //1:05:00!!!!
+        
+        catch (error) {
+          print(error);
+          
+        }
+      } 
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    var _token = Provider.of<AuthModel>(context, listen: false).token;
+
     return Form(
       key: _formKey,
       child: Column(
@@ -55,13 +116,16 @@ class DiaryEntryFormState extends State<WriteBody> {
           TextFormField(
             decoration: formatDecor('title', inputCol),
             maxLines: 1,
-            controller: titleTxtController,
+            controller: _titleTxtController,
+            validator: validateLogin("This field should not be empty"),
           ),
           emptySpace(),
           TextFormField(
             decoration: formatDecor('write something...', inputCol),
-            maxLines: 13,
-            controller: bodyTxtController,
+            maxLines: null,
+            keyboardType: TextInputType.multiline,
+            controller: _bodyTxtController,
+            validator: validateLogin("This field should not be empty"),
           ),
           emptySpace(),
           TextFieldTags(
@@ -79,7 +143,12 @@ class DiaryEntryFormState extends State<WriteBody> {
             },
           ),
           emptySpace(),
-          customButton("done", Color.fromRGBO(106, 65, 98, 1)),
+          GestureDetector(
+            child: customButton("done", Color.fromRGBO(106, 65, 98, 1)),
+            onTap: () {
+              _save(_token);
+            },
+          )
         ],
       ),
     );

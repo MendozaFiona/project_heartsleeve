@@ -32,16 +32,25 @@ class LoginFormState extends State<LoginBody> {
       String email = emailTxtController.text;
       String password = passTxtController.text;
 
-      var loginResponse = await authenticate(email,password);
+      try{
+        var loginResponse = await authenticate(email,password);
 
-      if(loginResponse.errMsg == null){
-        print(loginResponse.token);
-        Provider.of<AuthModel>(context, listen: false).login(loginResponse.token);
-        _btmNav();
-      }
-      else{
+        if(loginResponse.errMsg == null){
+          print(loginResponse.token);
+          Provider.of<AuthModel>(context, listen: false).login(loginResponse.token);
+          _btmNav();
+        }
+        else{
+          Scaffold.of(context).showSnackBar(SnackBar(
+            content: Text("${loginResponse.errMsg}",
+              style: TextStyle(
+                color: Color.fromRGBO(243, 157, 182, 1)
+              ),))
+          );
+        }
+      } catch (error){
         Scaffold.of(context).showSnackBar(SnackBar(
-          content: Text("${loginResponse.errMsg}",
+          content: Text("${error.message}",
             style: TextStyle(
               color: Color.fromRGBO(243, 157, 182, 1)
             ),))

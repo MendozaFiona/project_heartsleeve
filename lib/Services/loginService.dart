@@ -11,7 +11,7 @@ Future<LoginResponse> authenticate(String email, String password) async{
     'password': password
   };
  
-  var response = await http.post('${API_URL}/auth/login', body:body);
+  var response = await http.post('$API_URL/auth/login', body:body);
 
   if(response.statusCode == 200 || response.statusCode == 401){
     return LoginResponse.fromJson(jsonDecode(response.body));
