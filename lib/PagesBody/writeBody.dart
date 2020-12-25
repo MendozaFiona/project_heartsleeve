@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:heartsleeve/essentials.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 import 'package:heartsleeve/Services/diaryEntryService.dart';
-import 'package:heartsleeve/JsonModels/diaryEntry.dart';
+//import 'package:heartsleeve/JsonModels/diaryEntry.dart';
 import 'package:provider/provider.dart';
 import 'package:heartsleeve/Models/authModel.dart';
+//import 'package:heartsleeve/CustomContainers/screenArguments.dart';
 
 class WriteBody extends StatefulWidget {
   @override
@@ -20,13 +21,15 @@ class DiaryEntryFormState extends State<WriteBody> {
       _titleTxtController = TextEditingController(),
       _bodyTxtController = TextEditingController();
 
+  //final _message;
+
   var _writeTitle, _writeTxtBody;
 
-  @override
+  /*@override
   void initState() {
     // TODO: implement initState
     super.initState();
-  }
+  }*/
 
   @override
   void dispose() {
@@ -55,30 +58,15 @@ class DiaryEntryFormState extends State<WriteBody> {
     return _writeTxtBody;
   }
 
-  _checkArray(){
-    if(_userTags.length == null){
-      Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text("Tags warn readers of your content. PLease don't leave it blank.",
-              style: TextStyle(
-                color: Color.fromRGBO(243, 157, 182, 1)
-              ),))
-          );
-    }
-  }
-
   _save(_token) async {
-
     if (_formKey.currentState.validate()) {
-      if(_userTags.length == 0){
+      if (_userTags.length == 0) {
         Scaffold.of(context).showSnackBar(SnackBar(
-              content: Text("Tags warn readers of your content. Please don't leave it blank.",
-                style: TextStyle(
-                  color: Color.fromRGBO(243, 157, 182, 1)
-                ),))
-            );
-      }
-
-      else{
+            content: Text(
+          "Tags warn readers of your content. Please don't leave it blank.",
+          style: TextStyle(color: Color.fromRGBO(243, 157, 182, 1)),
+        )));
+      } else {
         var _title = _getTitle();
         var _content = _getTxtBody();
 
@@ -92,16 +80,26 @@ class DiaryEntryFormState extends State<WriteBody> {
         }
 
         try {
-          var diaryResponse = await addEntry(writeData, _token);
-          Scaffold.of(context).showSnackBar(SnackBar(content: Text("Saving...")));
-          Navigator.pop(context, diaryResponse.message);
-        } //1:05:00!!!!
+          /*var diaryResponse = */await addEntry(writeData, _token);
+          Scaffold.of(context)
+              .showSnackBar(SnackBar(content: Text("Saving...")));
+          
+          Future.delayed(Duration(seconds: 2), (){
+            Navigator.pushNamed(
+              context,
+              "/",
+              /*arguments: ScreenArguments(
+                diaryResponse.message),*/
         
+            );
+          });
+          
+        } //1:05:00!!!!
+
         catch (error) {
           print(error);
-          
         }
-      } 
+      }
     }
   }
 

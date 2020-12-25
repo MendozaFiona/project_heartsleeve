@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heartsleeve/CustomContainers/screenArguments.dart';
 import 'package:heartsleeve/essentials.dart';
 
 import 'package:heartsleeve/PagesBody/writeBody.dart';
@@ -101,6 +102,7 @@ class EditPage extends StatelessWidget{
 
 
 //HOME
+
 class HomePage extends StatelessWidget{
 
   @override 
@@ -118,6 +120,28 @@ class HomePage extends StatelessWidget{
             child: homeBody(),
             padding: EdgeInsets.all(20.0),
           ),
+
+          /*Builder(
+            builder: (context){
+              
+              /*if (snapshot.hasError) {*/
+              try{ 
+                ScreenArguments args = ModalRoute.of(context).settings.arguments; 
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  Scaffold.of(context)
+                  .showSnackBar(SnackBar(content: Text(args.message)));
+                });       
+                
+                return Container();
+              }
+
+              catch(e){
+                return null;
+              }
+              //}
+            }
+          ),*/
+          
         ]
       ),
         

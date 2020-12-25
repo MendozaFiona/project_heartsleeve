@@ -18,7 +18,7 @@ Column homeBody(){
                     return DiaryPreview();
                   }
                 )
-            )),
+          )),
       ],
     );
 }

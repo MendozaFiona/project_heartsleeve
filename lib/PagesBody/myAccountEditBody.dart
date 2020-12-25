@@ -20,8 +20,6 @@ class EditFormState extends State<EditBody> {
       passExp = RegExp("^(?=.{8,20})[a-zA-Z0-9._]"), //CORRECT
       passTxtController = TextEditingController();
 
-  bool _isAccepted = false;
-
   @override
   void dispose() {
     passTxtController.dispose();
