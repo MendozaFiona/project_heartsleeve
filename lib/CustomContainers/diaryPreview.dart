@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:heartsleeve/JsonModels/tags.dart';
 import 'package:heartsleeve/Services/tagsService.dart';
+import 'package:heartsleeve/essentials.dart';
 
 class DiaryPreview extends StatelessWidget {
-  Future<Tags> _tagFuture;
+  //Future<Tags> _tagFuture;
 
   /*initState() {
     super.initState();
@@ -33,7 +34,69 @@ class DiaryPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    
+      return Padding(
+          padding: EdgeInsets.only(bottom: 10.0),
+          child: Column(
+            children:[
+              
+              GestureDetector(child: Container(
+            // CHANGE modify to depend text on parameter sent
+                child: Column(children: [
+                  Row(
+                    children: [
+                      Expanded(child: Text('TITLE', textAlign: TextAlign.center)),
+                    ], // children
+                  ),
+                  emptySpace(16.0),
+                  Row(
+                    children: [
+                      Expanded(child: Text('this is a preview', textAlign: TextAlign.center)),
+                    ], // children
+                  )
+                ]),
+
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(160, 127, 136, 0.7),
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(15))), //PUT THIS IN STYLES FOR REUSAGE!!!
+
+                width: MediaQuery.of(context).size.width * .95,
+                height: MediaQuery.of(context).size.height * .15,
+              ),
+              onTap: () {
+                print("you tapped this"); //test
+              },
+            ),
+
+            emptySpace(3.0),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("date published"), //dynamic
+                  
+                  GestureDetector(child:Text("delete"),
+                    onTap: () {
+                      print("you deleted this"); //test
+                    },
+                  ),
+              ],)
+            )
+          ],
+ 
+        )
+      );
+      /*onTap: () {
+        print("you tapped this");
+      },
+    );*/
+
+
+
+    /*return InkWell(
       child: Padding(
           padding: EdgeInsets.only(bottom: 10.0),
           child: Container(
@@ -66,6 +129,6 @@ class DiaryPreview extends StatelessWidget {
       onTap: () {
         print("you tapped this");
       },
-    );
+    );*/
   }
 }
