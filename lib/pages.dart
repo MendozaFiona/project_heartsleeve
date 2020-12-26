@@ -13,6 +13,7 @@ import 'package:heartsleeve/PagesBody/bookmarksBody.dart';
 
 //BOOKMARKS
 class BookmarksPage extends StatelessWidget{
+  
 
   @override 
   Widget build(BuildContext context){
@@ -218,6 +219,11 @@ class RegisterPage extends StatelessWidget{
 
 //WRITE
 class WritePage extends StatelessWidget{
+  final String title;
+  final String content;
+  final tagArr;
+
+  WritePage({this.title,this.content,this.tagArr});
 
   @override 
   Widget build(BuildContext context){
@@ -232,7 +238,7 @@ class WritePage extends StatelessWidget{
           uniformBg(),
           Container(
             child: SingleChildScrollView(
-              child:WriteBody()
+              child:WriteBody(title: title, content: content)
             ),
             padding: EdgeInsets.all(20.0),
           ),

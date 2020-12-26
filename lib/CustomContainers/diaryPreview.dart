@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:heartsleeve/editArguments.dart';
 import 'package:heartsleeve/essentials.dart';
+import 'package:heartsleeve/pages.dart';
 
 class DiaryPreview extends StatelessWidget {
   //Future<Tags> _tagFuture;
@@ -76,7 +78,14 @@ class DiaryPreview extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * .95,
                 height: MediaQuery.of(context).size.height * .1,
               ),
-              onTap: ()  async {
+              onTap: ()  /*async*/ {
+
+                EditArguments(id: enInfo.id, title: enInfo.title, content: enInfo.content, );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context)
+                  => WritePage(title: enInfo.title, content: enInfo.content)),
+                );
               
               },
             ),

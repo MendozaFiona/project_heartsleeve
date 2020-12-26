@@ -5,9 +5,15 @@ import 'package:heartsleeve/Services/diaryEntryService.dart';
 //import 'package:heartsleeve/JsonModels/diaryEntry.dart';
 import 'package:provider/provider.dart';
 import 'package:heartsleeve/Models/authModel.dart';
-//import 'package:heartsleeve/CustomContainers/screenArguments.dart';
+import 'package:heartsleeve/editArguments.dart';
 
 class WriteBody extends StatefulWidget {
+  final String title;
+  final String content;
+  final tagArr;
+
+  WriteBody({this.title,this.content,this.tagArr});
+
   @override
   DiaryEntryFormState createState() {
     return DiaryEntryFormState();
@@ -17,19 +23,29 @@ class WriteBody extends StatefulWidget {
 class DiaryEntryFormState extends State<WriteBody> {
   final _formKey = GlobalKey<FormState>(),
       _userTags = [],
-      inputCol = Color.fromRGBO(160, 127, 136, 0.7),
-      _titleTxtController = TextEditingController(),
+      inputCol = Color.fromRGBO(160, 127, 136, 0.7);
+  var _titleTxtController = TextEditingController(),
       _bodyTxtController = TextEditingController();
 
   //final _message;
 
   var _writeTitle, _writeTxtBody;
 
-  /*@override
+  @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-  }*/
+    print("passed in function!");
+    if (widget.title == null) {
+      _titleTxtController.text = "";
+      _bodyTxtController.text = "";
+      print("passed in null!!!");
+    } else {
+      _titleTxtController.text = widget.title;
+      _bodyTxtController.text = widget.content;
+      print("passed!");
+    }
+    print("${_titleTxtController.text}");
+  }
 
   @override
   void dispose() {
@@ -38,6 +54,21 @@ class DiaryEntryFormState extends State<WriteBody> {
     //tagsTxtController.dispose();
 
     super.dispose();
+  }
+
+//THIS CHANGED
+  _check() {
+    print("passed in function!");
+    if (EditArguments().id == null) {
+      _titleTxtController.text = "";
+      _bodyTxtController.text = "";
+      print("passed in null!!!");
+    } else {
+      _titleTxtController.text = EditArguments().title;
+      _bodyTxtController.text = EditArguments().content;
+      print("passed!");
+    }
+    print("${_titleTxtController.text}");
   }
 
   _addTagList(tag) {
@@ -80,20 +111,16 @@ class DiaryEntryFormState extends State<WriteBody> {
         }
 
         try {
-          /*var diaryResponse = */await addEntry(writeData, _token);
+          /*var diaryResponse = */ await addEntry(writeData, _token);
           Scaffold.of(context)
               .showSnackBar(SnackBar(content: Text("Saving...")));
-          
-          Future.delayed(Duration(seconds: 2), (){
-            Navigator.pushNamed(
+
+          Future.delayed(Duration(seconds: 2), () {
+            Navigator.popAndPushNamed(
               context,
               "/",
-              /*arguments: ScreenArguments(
-                diaryResponse.message),*/
-        
             );
           });
-          
         } //1:05:00!!!!
 
         catch (error) {
@@ -106,6 +133,8 @@ class DiaryEntryFormState extends State<WriteBody> {
   @override
   Widget build(BuildContext context) {
     var _token = Provider.of<AuthModel>(context, listen: false).token;
+
+    //_check(); //THIS CHANGED
 
     return Form(
       key: _formKey,
@@ -134,11 +163,10 @@ class DiaryEntryFormState extends State<WriteBody> {
               if (!_userTags.contains(tag)) {
                 _addTagList(tag);
               }
-              
             },
             onDelete: (tag) {
               _delTagList(tag);
-               //tag gives the value!
+              //tag gives the value!
             },
           ),
           emptySpace(),
