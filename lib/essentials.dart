@@ -108,7 +108,7 @@ validateForm([inputExp, String _errResponse = "Invalid Input", String fType]) {
     if (value.isEmpty) {
       return "This field is required";
     } else if (fType == "confirm") {
-      print(inputExp);
+      
       if (inputExp != value) {
         return _errResponse;
       }

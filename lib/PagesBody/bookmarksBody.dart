@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:heartsleeve/CustomContainers/sortMenu.dart';
 import 'package:heartsleeve/CustomContainers/diaryPreview.dart';
 import 'package:heartsleeve/Models/bookmarksModel.dart';
 
@@ -18,7 +17,6 @@ Consumer bookmarksBody(){
 
         return Column(
           children: [
-            SortMenu(),
             Expanded(
             child: SizedBox(
                 

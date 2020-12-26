@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:heartsleeve/JsonModels/tags.dart';
-import 'package:heartsleeve/Services/tagsService.dart';
 import 'package:heartsleeve/essentials.dart';
 
 class DiaryPreview extends StatelessWidget {
@@ -32,6 +30,24 @@ class DiaryPreview extends StatelessWidget {
   
   */
 
+  final enInfo;
+  final delAction;
+  final editAction;
+
+  DiaryPreview({this.enInfo,
+    this.delAction,
+    this.editAction
+  });
+
+  _pubDate(){
+    return '${enInfo.created.substring(0, 10)}';
+  }
+
+  _pubTime(){
+    var words = enInfo.content.length;
+    return 'characters: $words';
+  }
+
   @override
   Widget build(BuildContext context) {
     
@@ -42,30 +58,26 @@ class DiaryPreview extends StatelessWidget {
               
               GestureDetector(child: Container(
             // CHANGE modify to depend text on parameter sent
-                child: Column(children: [
-                  Row(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child:Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Expanded(child: Text('TITLE', textAlign: TextAlign.center)),
-                    ], // children
-                  ),
-                  emptySpace(16.0),
-                  Row(
-                    children: [
-                      Expanded(child: Text('this is a preview', textAlign: TextAlign.center)),
-                    ], // children
-                  )
-                ]),
+                    Text('${enInfo.title}'),
+                    Text('${_pubTime()}'),
+                ])),
 
                 decoration: BoxDecoration(
                     color: Color.fromRGBO(160, 127, 136, 0.7),
                     borderRadius: BorderRadius.all(
-                        Radius.circular(15))), //PUT THIS IN STYLES FOR REUSAGE!!!
+                        Radius.circular(10))), //PUT THIS IN STYLES FOR REUSAGE!!!
 
                 width: MediaQuery.of(context).size.width * .95,
-                height: MediaQuery.of(context).size.height * .15,
+                height: MediaQuery.of(context).size.height * .1,
               ),
-              onTap: () {
-                print("you tapped this"); //test
+              onTap: ()  async {
+              
               },
             ),
 
@@ -76,11 +88,17 @@ class DiaryPreview extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("date published"), //dynamic
+                  Text("${_pubDate()}"), //dynamic
                   
                   GestureDetector(child:Text("delete"),
-                    onTap: () {
-                      print("you deleted this"); //test
+                    onTap: ()  async {
+                      print(delAction);
+                      var res = await showDeleteDialog(context,delAction,enInfo);
+                      if(res!=null){
+                        Scaffold.of(context)..removeCurrentSnackBar()
+                        ..removeCurrentSnackBar()
+                          ..showSnackBar(SnackBar(content: Text('$res')));
+                      }
                     },
                   ),
               ],)
@@ -89,46 +107,35 @@ class DiaryPreview extends StatelessWidget {
  
         )
       );
-      /*onTap: () {
-        print("you tapped this");
-      },
-    );*/
-
-
-
-    /*return InkWell(
-      child: Padding(
-          padding: EdgeInsets.only(bottom: 10.0),
-          child: Container(
-            // CHANGE modify to depend text on parameter sent
-            child: Column(children: [
-              Row(
-                children: [
-                  Expanded(child: Text('date', textAlign: TextAlign.center)),
-                  Expanded(child: Text('TITLE', textAlign: TextAlign.center)),
-                  Expanded(child: Text('time', textAlign: TextAlign.center)),
-                ], // children
-              ),
-              Row(
-                children: [
-                  Expanded(
-                      child: Text('this is a preview',
-                          textAlign: TextAlign.center)),
-                ], // children
-              )
-            ]),
-
-            decoration: BoxDecoration(
-                color: Color.fromRGBO(160, 127, 136, 0.7),
-                borderRadius: BorderRadius.all(
-                    Radius.circular(15))), //PUT THIS IN STYLES FOR REUSAGE!!!
-
-            width: MediaQuery.of(context).size.width * .95,
-            height: MediaQuery.of(context).size.height * .15,
-          )),
-      onTap: () {
-        print("you tapped this");
-      },
-    );*/
+      
   }
+}
+
+showDeleteDialog(BuildContext context,delAction,enInfo) async {
+	return showDialog(
+		context:context,
+		builder:(BuildContext context){
+			return AlertDialog(
+				title: Text('Deleting Entry'),
+				content: Text('Do you want to delete ${enInfo.title}?'),
+				actions: [
+					TextButton(
+						child: Text('Delete'),
+						onPressed:() async {
+              
+							var delRes  = await delAction(enInfo);
+              Navigator.of(context).pop(delRes.message);
+						}
+					),
+					TextButton(
+						child: Text('Cancel'),
+						onPressed:(){
+							Navigator.of(context).pop();
+						}
+					)
+				]
+
+			);
+		}
+	);	
 }

@@ -51,8 +51,6 @@ class DiscoverBody extends StatelessWidget{
                       } else {
                         bookmark.add(index here);
                       }*/
-
-                    print("like");
                   
                   },
                 )

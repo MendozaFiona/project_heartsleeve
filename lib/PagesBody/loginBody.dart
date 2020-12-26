@@ -36,8 +36,8 @@ class LoginFormState extends State<LoginBody> {
         var loginResponse = await authenticate(email,password);
 
         if(loginResponse.errMsg == null){
-          print(loginResponse.token);
-          Provider.of<AuthModel>(context, listen: false).login(loginResponse.token);
+          
+          Provider.of<AuthModel>(context, listen: false).login(loginResponse.user,loginResponse.token); //requires user ig
           _btmNav();
         }
         else{

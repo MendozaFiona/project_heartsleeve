@@ -46,7 +46,7 @@ class DiscoverEntry extends StatelessWidget {
     ),
     
     onTap: (){
-      print("you tapped this");
+      
     },
 
     );

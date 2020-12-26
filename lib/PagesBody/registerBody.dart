@@ -36,7 +36,7 @@ class RegisterFormState extends State<RegisterBody> {
   }
 
   _getConfirmPass() {
-    print("${passTxtController.text}");
+    //print("${passTxtController.text}");
   }
 
   _register() {

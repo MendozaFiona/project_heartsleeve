@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:heartsleeve/CustomContainers/screenArguments.dart';
 import 'package:heartsleeve/essentials.dart';
 
 import 'package:heartsleeve/PagesBody/writeBody.dart';
@@ -117,35 +116,14 @@ class HomePage extends StatelessWidget{
         children: [
           uniformBg(),
           Container(
-            child: homeBody(),
+            child: HomeBody(),
             padding: EdgeInsets.all(20.0),
           ),
-
-          /*Builder(
-            builder: (context){
-              
-              /*if (snapshot.hasError) {*/
-              try{ 
-                ScreenArguments args = ModalRoute.of(context).settings.arguments; 
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  Scaffold.of(context)
-                  .showSnackBar(SnackBar(content: Text(args.message)));
-                });       
-                
-                return Container();
-              }
-
-              catch(e){
-                return null;
-              }
-              //}
-            }
-          ),*/
           
         ]
       ),
         
-    );
+    ); 
 
   } // build
 

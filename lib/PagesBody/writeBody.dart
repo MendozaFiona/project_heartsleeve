@@ -114,6 +114,7 @@ class DiaryEntryFormState extends State<WriteBody> {
           TextFormField(
             decoration: formatDecor('title', inputCol),
             maxLines: 1,
+            maxLength: 30,
             controller: _titleTxtController,
             validator: validateLogin("This field should not be empty"),
           ),
@@ -133,11 +134,11 @@ class DiaryEntryFormState extends State<WriteBody> {
               if (!_userTags.contains(tag)) {
                 _addTagList(tag);
               }
-              print(_userTags);
+              
             },
             onDelete: (tag) {
               _delTagList(tag);
-              print(_userTags); //tag gives the value!
+               //tag gives the value!
             },
           ),
           emptySpace(),

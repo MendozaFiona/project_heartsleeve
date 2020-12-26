@@ -24,7 +24,7 @@ class HeartSleeveApp extends StatelessWidget {
     return MultiProvider(
       providers:[
         ChangeNotifierProvider(create: (context) => AuthModel()),
-        //Provider(create: (context) => BookmarksModel()),
+        ChangeNotifierProvider(create: (context) => BookmarksModel()),
       ],
       
       child: MaterialApp(

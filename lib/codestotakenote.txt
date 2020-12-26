@@ -1,3 +1,10 @@
+
+FROM HOMEBODY:
+
+return DiaryPreview();
+
+////////////////////////////
+
 FOR BOTTOM NAVIGATION BAR:
 
 void _onItemTapped(int index) {

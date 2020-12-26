@@ -48,9 +48,7 @@ class MyAccountBox extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * .9,
                 height: _getHeight(),
               ))),
-      /*onTap: () {
-        print("you tapped this");
-      },*/
+      
     );
   }
 }
