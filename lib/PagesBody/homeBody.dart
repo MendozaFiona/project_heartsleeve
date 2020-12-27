@@ -6,6 +6,8 @@ import 'package:heartsleeve/Models/authModel.dart';
 import 'package:heartsleeve/JsonModels/diaryEntry.dart';
 import 'package:heartsleeve/Services/diaryEntryService.dart';
 
+import '../pages.dart';
+
 class HomeBody extends StatefulWidget {
   @override
   HomeBodyState createState() {
@@ -43,9 +45,12 @@ class HomeBodyState extends State<HomeBody>{
 
 	 _removeEntry(entryData) async {
 		var token  = Provider.of<AuthModel>(context, listen: false).token;
-		try{var res = await deleteEntry(entryData.id,token);
-		_key.currentState.refresh();
-		return res;}
+		
+    try{
+      var res = await deleteEntry(entryData.id,token);
+		  _key.currentState.refresh();
+		  return res;
+    }
     catch(e){
       print(e);
     }
@@ -63,7 +68,21 @@ class HomeBodyState extends State<HomeBody>{
         children: [
           //SortMenu(),
           DiaryPreview(enInfo: entryInfo,
-          delAction: _removeEntry,),
+          delAction: _removeEntry,
+          editAction: () async {
+						var res  = await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context)
+                  => WritePage(enInfo: entryInfo)),
+                );
+
+						if(res != null){
+							_key.currentState.refresh();
+							Scaffold.of(context)
+							..removeCurrentSnackBar()
+							..showSnackBar(SnackBar(content: Text('$res')));
+						}
+					}),
         ],
       ),
 

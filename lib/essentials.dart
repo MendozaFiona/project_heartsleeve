@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 
+Container centerWidget(obj, context){
+  return Container(
+    width: MediaQuery.of(context).size.width * 0.8,
+    height: MediaQuery.of(context).size.height * 0.72,
+    child:Center(
+      child: obj,
+  ));
+}
+
 Widget customButton(
     [btnTxt = 'default',
     _defaultClr = Colors.white,
@@ -21,8 +30,6 @@ Widget customButton(
     ],
   );
 } //PLEASE CHANGE TO DYNAMIC
-
-//PLEASE CHANGE OTHER CLASSES' LOGIC SIMILAR TO THIS
 
 InputDecoration formatDecor(var str, [fillCol = Colors.white]) {
   return InputDecoration(

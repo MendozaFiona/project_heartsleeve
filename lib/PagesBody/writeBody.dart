@@ -5,14 +5,10 @@ import 'package:heartsleeve/Services/diaryEntryService.dart';
 //import 'package:heartsleeve/JsonModels/diaryEntry.dart';
 import 'package:provider/provider.dart';
 import 'package:heartsleeve/Models/authModel.dart';
-import 'package:heartsleeve/editArguments.dart';
 
 class WriteBody extends StatefulWidget {
-  final String title;
-  final String content;
-  final tagArr;
-
-  WriteBody({this.title,this.content,this.tagArr});
+  final enInfo;
+  WriteBody({this.enInfo});
 
   @override
   DiaryEntryFormState createState() {
@@ -26,49 +22,32 @@ class DiaryEntryFormState extends State<WriteBody> {
       inputCol = Color.fromRGBO(160, 127, 136, 0.7);
   var _titleTxtController = TextEditingController(),
       _bodyTxtController = TextEditingController();
-
-  //final _message;
-
   var _writeTitle, _writeTxtBody;
+  bool _isEdit;
 
   @override
   void initState() {
     super.initState();
-    print("passed in function!");
-    if (widget.title == null) {
+
+    if (widget.enInfo == null) {
       _titleTxtController.text = "";
       _bodyTxtController.text = "";
-      print("passed in null!!!");
+      _isEdit = false;
+
     } else {
-      _titleTxtController.text = widget.title;
-      _bodyTxtController.text = widget.content;
-      print("passed!");
+      _titleTxtController.text = widget.enInfo.title;
+      _bodyTxtController.text = widget.enInfo.content;
+      _isEdit = true;
+      
     }
-    print("${_titleTxtController.text}");
+    
   }
 
   @override
   void dispose() {
     _titleTxtController.dispose();
     _bodyTxtController.dispose();
-    //tagsTxtController.dispose();
-
     super.dispose();
-  }
-
-//THIS CHANGED
-  _check() {
-    print("passed in function!");
-    if (EditArguments().id == null) {
-      _titleTxtController.text = "";
-      _bodyTxtController.text = "";
-      print("passed in null!!!");
-    } else {
-      _titleTxtController.text = EditArguments().title;
-      _bodyTxtController.text = EditArguments().content;
-      print("passed!");
-    }
-    print("${_titleTxtController.text}");
   }
 
   _addTagList(tag) {
@@ -89,7 +68,36 @@ class DiaryEntryFormState extends State<WriteBody> {
     return _writeTxtBody;
   }
 
-  _save(_token) async {
+  _edit(_writeData, _token) async {
+    await updateEntry(widget.enInfo.id,_writeData, _token);
+
+    Scaffold.of(context)
+        .showSnackBar(SnackBar(content: Text("Saving...")));
+
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.popAndPushNamed(
+        context,
+        "/",
+      );
+    });
+  }
+
+  _new(_writeData, _token) async{
+    await addEntry(_writeData, _token);
+
+    Scaffold.of(context)
+        .showSnackBar(SnackBar(content: Text("Saving...")));
+
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.popAndPushNamed(
+        context,
+        "/",
+      );
+    });
+    
+  }
+
+  _save(_token) {
     if (_formKey.currentState.validate()) {
       if (_userTags.length == 0) {
         Scaffold.of(context).showSnackBar(SnackBar(
@@ -111,19 +119,14 @@ class DiaryEntryFormState extends State<WriteBody> {
         }
 
         try {
-          /*var diaryResponse = */ await addEntry(writeData, _token);
-          Scaffold.of(context)
-              .showSnackBar(SnackBar(content: Text("Saving...")));
+          if(_isEdit == true){
+            _edit(writeData, _token);
+          }
+          else{
+            _new(writeData, _token);
+          }
 
-          Future.delayed(Duration(seconds: 2), () {
-            Navigator.popAndPushNamed(
-              context,
-              "/",
-            );
-          });
-        } //1:05:00!!!!
-
-        catch (error) {
+        } catch (error) {
           print(error);
         }
       }
@@ -133,8 +136,6 @@ class DiaryEntryFormState extends State<WriteBody> {
   @override
   Widget build(BuildContext context) {
     var _token = Provider.of<AuthModel>(context, listen: false).token;
-
-    //_check(); //THIS CHANGED
 
     return Form(
       key: _formKey,
@@ -151,6 +152,7 @@ class DiaryEntryFormState extends State<WriteBody> {
           TextFormField(
             decoration: formatDecor('write something...', inputCol),
             maxLines: null,
+            maxLength: 65000,
             keyboardType: TextInputType.multiline,
             controller: _bodyTxtController,
             validator: validateLogin("This field should not be empty"),
@@ -173,7 +175,7 @@ class DiaryEntryFormState extends State<WriteBody> {
           GestureDetector(
             child: customButton("done", Color.fromRGBO(106, 65, 98, 1)),
             onTap: () {
-              _save(_token);
+                _save(_token);
             },
           )
         ],

@@ -219,11 +219,9 @@ class RegisterPage extends StatelessWidget{
 
 //WRITE
 class WritePage extends StatelessWidget{
-  final String title;
-  final String content;
-  final tagArr;
+  final enInfo;
 
-  WritePage({this.title,this.content,this.tagArr});
+  WritePage({this.enInfo});
 
   @override 
   Widget build(BuildContext context){
@@ -238,7 +236,7 @@ class WritePage extends StatelessWidget{
           uniformBg(),
           Container(
             child: SingleChildScrollView(
-              child:WriteBody(title: title, content: content)
+              child:WriteBody(enInfo: enInfo)
             ),
             padding: EdgeInsets.all(20.0),
           ),

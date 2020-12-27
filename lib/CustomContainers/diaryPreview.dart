@@ -1,36 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:heartsleeve/editArguments.dart';
 import 'package:heartsleeve/essentials.dart';
 import 'package:heartsleeve/pages.dart';
 
 class DiaryPreview extends StatelessWidget {
-  //Future<Tags> _tagFuture;
-
-  /*initState() {
-    super.initState();
-    _tagFuture = getTags();
-  }*/
-
-  //inside widget build
-
-  /*
-  
-  FutureBuilder<Tags>(
-    future: _tagFuture,
-    builder: (context,snapshot){
-      if(snapshot.hasError){
-        return Text('Cannot load tags');
-      } else if (snaphsot.hasData){
-        var tags = snapshot.data.tags; //probably should be an array
-        //probably change in tags.dart where query is (where entry_id==***)
-        return Text(${var tags}); //or other widget
-      }
-      return Text('Loading Tags...');
-    }
-  )
-  
-  
-  */
 
   final enInfo;
   final delAction;
@@ -45,7 +17,7 @@ class DiaryPreview extends StatelessWidget {
     return '${enInfo.created.substring(0, 10)}';
   }
 
-  _pubTime(){
+  _pubChar(){
     var words = enInfo.content.length;
     return 'characters: $words';
   }
@@ -67,7 +39,7 @@ class DiaryPreview extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                     Text('${enInfo.title}'),
-                    Text('${_pubTime()}'),
+                    Text('${_pubChar()}'),
                 ])),
 
                 decoration: BoxDecoration(
@@ -80,12 +52,7 @@ class DiaryPreview extends StatelessWidget {
               ),
               onTap: ()  /*async*/ {
 
-                EditArguments(id: enInfo.id, title: enInfo.title, content: enInfo.content, );
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)
-                  => WritePage(title: enInfo.title, content: enInfo.content)),
-                );
+                editAction();
               
               },
             ),
@@ -101,7 +68,6 @@ class DiaryPreview extends StatelessWidget {
                   
                   GestureDetector(child:Text("delete"),
                     onTap: ()  async {
-                      print(delAction);
                       var res = await showDeleteDialog(context,delAction,enInfo);
                       if(res!=null){
                         Scaffold.of(context)..removeCurrentSnackBar()

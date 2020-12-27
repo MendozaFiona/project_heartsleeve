@@ -1,3 +1,4 @@
+//storing entries into db
 class DiaryEntry {
   final String message;
   final Map info;
@@ -12,6 +13,8 @@ class DiaryEntry {
   }
 }
 
+
+//retrieving entries from db
 class EntryInfo{
 	final String id;
 	final String title;
