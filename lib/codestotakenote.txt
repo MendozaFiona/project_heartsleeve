@@ -1,3 +1,25 @@
+IN API TAGCONTROLLER:
+
+$tags = DB::table('entry_tags')->where('entry_id', $entry_id)->pluck('tag_id')->toArray();
+
+/////////////////////////////
+
+FOR DIARYENTRYSERVICE:
+
+getTags(String entryID) async {
+  var response = await http.get('$API_URL/diary_entries/$entryID/tags');
+  if (response.statusCode == 200) {
+    //String tagDecode = response.body.toString();
+    //var decoded = jsonDecode(response.body);
+    var test = response.body;
+    print("RESPONSE: $test");
+    //return test;
+  } else {
+    throw Exception('An error occured when fetching entry tags');
+  }
+}
+
+////////////////////////////
 
 FROM HOMEBODY:
 

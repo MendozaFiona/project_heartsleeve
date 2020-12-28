@@ -26,7 +26,7 @@ class EntryInfo{
 		this.id,
 		this.title,
 		this.content,
-		this.tagsArr, //maybe just add getting tag in the api controller method
+		this.tagsArr,
 		this.created
 		
 	});
@@ -37,6 +37,26 @@ class EntryInfo{
 			content: json['content'],
 			//tagsArr: json['description'], //from diff table
 			created: (json['created_at'] == null)?"" : DateTime.parse(json['created_at']).toString()
+		);
+	}
+
+}
+
+
+class TagsInfo{
+	//final String id;
+	//final String entryID;
+  final tagsArr; //list
+	
+  TagsInfo({
+		//this.id,
+		//this.entryID,
+		this.tagsArr,
+		
+	});
+	factory TagsInfo.fromJson(Map<String,dynamic> json){
+		return TagsInfo(
+			tagsArr: json['tags'],
 		);
 	}
 

@@ -21,7 +21,6 @@ Future<EntryInfo> discoverEntry() async {
 
   if (response.body.isNotEmpty) {
     if (response.statusCode == 200) {
-      //var decoded = jsonDecode(response.body);
       return EntryInfo.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('An error occured when retrieving entries');
@@ -44,6 +43,22 @@ Future<List<EntryInfo>> getEntries(String user, int page) async {
   }
 }
 
+Future<TagsInfo> getTags(String entryID) async {
+  var response =
+      await http.get('$API_URL/diary_entries/$entryID/tags');
+  try{
+  if (response.statusCode == 200) {
+    //String tagDecode = response.body.toString();
+    //var decoded = jsonDecode(response.body);
+    print(response.body);
+    return TagsInfo.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('An error occured when fetching entry tags');
+  } }catch(e){
+    print(e);
+  }
+}
+
 Future<DiaryEntry> deleteEntry(id, token) async {
   var response = await http.delete('$API_URL/diary_entries/$id',
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'});
@@ -60,7 +75,7 @@ Future<DiaryEntry> updateEntry(id, data, token) async {
   var response = await http.put('$API_URL/diary_entries/$id',
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'}, body: data);
 
-  if (response.statusCode == 200) {
+  if (response.statusCode == 201) {
     var decoded = jsonDecode(response.body);
     return DiaryEntry.fromJson(decoded);
   } else {

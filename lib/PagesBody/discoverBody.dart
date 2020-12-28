@@ -38,7 +38,6 @@ class DiscoverBodyState extends State<DiscoverBody> {
         child: FutureBuilder<EntryInfo>(
           future: futureData,
           builder: (context, snapshot){
-            print(snapshot.data);
             
             if(snapshot.hasData){
 

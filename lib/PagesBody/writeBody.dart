@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:heartsleeve/essentials.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 import 'package:heartsleeve/Services/diaryEntryService.dart';
-//import 'package:heartsleeve/JsonModels/diaryEntry.dart';
+import 'package:heartsleeve/JsonModels/diaryEntry.dart';
 import 'package:provider/provider.dart';
 import 'package:heartsleeve/Models/authModel.dart';
 
@@ -23,7 +23,17 @@ class DiaryEntryFormState extends State<WriteBody> {
   var _titleTxtController = TextEditingController(),
       _bodyTxtController = TextEditingController();
   var _writeTitle, _writeTxtBody;
+  var tagsArr = [];
+
   bool _isEdit;
+
+  futureData() async {
+    var res = await getTags(widget.enInfo.id);
+
+    return res;
+  }
+
+  var randomData = Map();
 
   @override
   void initState() {
@@ -33,14 +43,15 @@ class DiaryEntryFormState extends State<WriteBody> {
       _titleTxtController.text = "";
       _bodyTxtController.text = "";
       _isEdit = false;
-
     } else {
       _titleTxtController.text = widget.enInfo.title;
       _bodyTxtController.text = widget.enInfo.content;
       _isEdit = true;
-      
     }
-    
+
+    if (_isEdit == true) {
+      futureData();
+    }
   }
 
   @override
@@ -69,10 +80,9 @@ class DiaryEntryFormState extends State<WriteBody> {
   }
 
   _edit(_writeData, _token) async {
-    await updateEntry(widget.enInfo.id,_writeData, _token);
+    await updateEntry(widget.enInfo.id, _writeData, _token);
 
-    Scaffold.of(context)
-        .showSnackBar(SnackBar(content: Text("Saving...")));
+    Scaffold.of(context).showSnackBar(SnackBar(content: Text("Saving...")));
 
     Future.delayed(Duration(seconds: 2), () {
       Navigator.popAndPushNamed(
@@ -82,11 +92,10 @@ class DiaryEntryFormState extends State<WriteBody> {
     });
   }
 
-  _new(_writeData, _token) async{
+  _new(_writeData, _token) async {
     await addEntry(_writeData, _token);
 
-    Scaffold.of(context)
-        .showSnackBar(SnackBar(content: Text("Saving...")));
+    Scaffold.of(context).showSnackBar(SnackBar(content: Text("Saving...")));
 
     Future.delayed(Duration(seconds: 2), () {
       Navigator.popAndPushNamed(
@@ -94,7 +103,6 @@ class DiaryEntryFormState extends State<WriteBody> {
         "/",
       );
     });
-    
   }
 
   _save(_token) {
@@ -119,17 +127,23 @@ class DiaryEntryFormState extends State<WriteBody> {
         }
 
         try {
-          if(_isEdit == true){
+          if (_isEdit == true) {
             _edit(writeData, _token);
-          }
-          else{
+          } else {
             _new(writeData, _token);
           }
-
         } catch (error) {
           print(error);
         }
       }
+    }
+  }
+
+  _displayTags() {
+    if (tagsArr.length == 0) {
+      return ["no-tags"];
+    } else {
+      return tagsArr;
     }
   }
 
@@ -159,6 +173,7 @@ class DiaryEntryFormState extends State<WriteBody> {
           ),
           emptySpace(),
           TextFieldTags(
+            initialTags: _displayTags(),
             tagsStyler: tagStyleDecor(),
             textFieldStyler: tagFieldDecor(),
             onTag: (tag) {
@@ -175,7 +190,7 @@ class DiaryEntryFormState extends State<WriteBody> {
           GestureDetector(
             child: customButton("done", Color.fromRGBO(106, 65, 98, 1)),
             onTap: () {
-                _save(_token);
+              _save(_token);
             },
           )
         ],
