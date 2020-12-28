@@ -18,7 +18,7 @@ Future<LoginResponse> authenticate(String email, String password) async{
   }
 
   else {
-    throw Exception('Error Occured');
+    throw Exception('Server Error Occured');
   }
 
 }

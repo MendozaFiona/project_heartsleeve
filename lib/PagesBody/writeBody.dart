@@ -23,17 +23,8 @@ class DiaryEntryFormState extends State<WriteBody> {
   var _titleTxtController = TextEditingController(),
       _bodyTxtController = TextEditingController();
   var _writeTitle, _writeTxtBody;
-  var tagsArr = [];
-
+  List<String> tagsArr = [];
   bool _isEdit;
-
-  futureData() async {
-    var res = await getTags(widget.enInfo.id);
-
-    return res;
-  }
-
-  var randomData = Map();
 
   @override
   void initState() {
@@ -47,10 +38,6 @@ class DiaryEntryFormState extends State<WriteBody> {
       _titleTxtController.text = widget.enInfo.title;
       _bodyTxtController.text = widget.enInfo.content;
       _isEdit = true;
-    }
-
-    if (_isEdit == true) {
-      futureData();
     }
   }
 
@@ -139,11 +126,49 @@ class DiaryEntryFormState extends State<WriteBody> {
     }
   }
 
-  _displayTags() {
-    if (tagsArr.length == 0) {
-      return ["no-tags"];
+  checkTags() {
+    if (_isEdit == false) {
+      return TextFieldTags(
+        initialTags: ["no-tags"],
+        tagsStyler: tagStyleDecor(),
+        textFieldStyler: tagFieldDecor(),
+        onTag: (tag) {
+          if (!_userTags.contains(tag)) {
+            _addTagList(tag);
+          }
+        },
+        onDelete: (tag) {
+          _delTagList(tag);
+        },
+      );
     } else {
-      return tagsArr;
+      return FutureBuilder<List<TagsInfo>>(
+        future: getTags(widget.enInfo.id),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            for (int i = 0; i < snapshot.data.length; i++) {
+              _addTagList("${snapshot.data[i].tags}");
+              tagsArr.add("${snapshot.data[i].tags}");
+            }
+
+            return TextFieldTags(
+              initialTags: tagsArr,
+              tagsStyler: tagStyleDecor(),
+              textFieldStyler: tagFieldDecor(),
+              onTag: (tag) {
+                if (!_userTags.contains(tag)) {
+                  _addTagList(tag);
+                }
+              },
+              onDelete: (tag) {
+                _delTagList(tag);
+              },
+            );
+          }
+
+          return CircularProgressIndicator();
+        },
+      );
     }
   }
 
@@ -172,20 +197,7 @@ class DiaryEntryFormState extends State<WriteBody> {
             validator: validateLogin("This field should not be empty"),
           ),
           emptySpace(),
-          TextFieldTags(
-            initialTags: _displayTags(),
-            tagsStyler: tagStyleDecor(),
-            textFieldStyler: tagFieldDecor(),
-            onTag: (tag) {
-              if (!_userTags.contains(tag)) {
-                _addTagList(tag);
-              }
-            },
-            onDelete: (tag) {
-              _delTagList(tag);
-              //tag gives the value!
-            },
-          ),
+          checkTags(),
           emptySpace(),
           GestureDetector(
             child: customButton("done", Color.fromRGBO(106, 65, 98, 1)),

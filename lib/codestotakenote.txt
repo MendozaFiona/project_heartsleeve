@@ -1,3 +1,16 @@
+IN WRITEBODY ISEDIT TO CHANGE TAGSARR:
+
+_displayTags() {
+    if (_isEdit == false) {
+      return ["no-tags"];
+    } else if (_isEdit == true) {
+      futureData();
+      return tagsArr;
+    }
+  }
+
+/////////////////////////////
+
 IN API TAGCONTROLLER:
 
 $tags = DB::table('entry_tags')->where('entry_id', $entry_id)->pluck('tag_id')->toArray();
@@ -46,3 +59,54 @@ currentIndex: _selectedIndex,
 FOR PASSWORD, IN TXTFORMFIELD:
 
 obscureText: True
+
+////////////////////////////
+
+FOR FUTUREBUILDER IN WRITEBODY:
+
+          //here
+          FutureBuilder<List<TagsInfo>>(
+            future: futureTags,
+            builder: (context, snapshot) {
+              print(snapshot.data);
+              if (snapshot.hasData) {
+                for (int i = 0; i < snapshot.data.length; i++) {
+                  //print(res[i].tags);
+                  tagsArr.add(snapshot.data[i].tags);
+                }
+
+                return TextFieldTags(
+                  initialTags: tagsArr,
+                  tagsStyler: tagStyleDecor(),
+                  textFieldStyler: tagFieldDecor(),
+                  onTag: (tag) {
+                    if (!_userTags.contains(tag)) {
+                      _addTagList(tag);
+                    }
+                  },
+                  onDelete: (tag) {
+                    _delTagList(tag);
+                    //tag gives the value!
+                  },
+                );
+              } else if (snapshot.data == null) {
+                return TextFieldTags(
+                  initialTags: ["no-tags"],
+                  tagsStyler: tagStyleDecor(),
+                  textFieldStyler: tagFieldDecor(),
+                  onTag: (tag) {
+                    if (!_userTags.contains(tag)) {
+                      _addTagList(tag);
+                    }
+                  },
+                  onDelete: (tag) {
+                    _delTagList(tag);
+                    //tag gives the value!
+                  },
+                );
+              }
+              return centerWidget(CircularProgressIndicator(), context);
+            },
+          ),
+
+  

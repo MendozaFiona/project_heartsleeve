@@ -48,16 +48,15 @@ class DiscoverBodyState extends State<DiscoverBody> {
               return Column(
               children: [
                 MyAccountBox(
-                  heightBox: 70.0,
+                  heightBox: 70.0, obj: snapshot.data,
                 ),
 
                 TitleBox(defaultTitle: randomData['title']),
 
                 //pay attention to this
-                SingleChildScrollView(
-                    child: DiscoverEntry(
+                DiscoverEntry(
                   randomData: randomData,
-                )),
+                ),
 
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                   GestureDetector(

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:heartsleeve/JsonModels/diaryEntry.dart';
-import 'package:heartsleeve/Services/diaryEntryService.dart';
 import 'package:heartsleeve/essentials.dart';
 
 class DiscoverEntry extends StatefulWidget {
@@ -39,24 +37,27 @@ class DiscoverEntryState extends State<DiscoverEntry> {
           padding: EdgeInsets.only(bottom: 10.0),
           child: Container( // this should depend on length of diary!
             // CHANGE modify to depend text on parameter sent
-            child: Padding(
-              child: Column(children: [
-                Row(
-                  children: [
-                    Expanded(child: Text(_date, textAlign: TextAlign.center)),
-                    Expanded(child: Text(_words, textAlign: TextAlign.center)),
-                  ], // children
-                ),
-                emptySpace(15.0),
-                Row(
-                  children: [
-                    Expanded(
-                        child: Text(_content, textAlign: TextAlign.center)),
-                  ], // children
-                )
-              ]),
-              padding: EdgeInsets.symmetric(vertical: 10),
-            ),
+            child: SingleChildScrollView(
+              child: Padding(
+                child: Column(children: [
+                  Row(
+                    children: [
+                      Expanded(child: Text(_date, textAlign: TextAlign.center)),
+                      Expanded(child: Text(_words, textAlign: TextAlign.center)),
+                    ], // children
+                  ),
+                  emptySpace(15.0),
+                  Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          child: Text(_content, textAlign: TextAlign.justify)),
+                    ], // children
+                  ))
+                ]),
+                padding: EdgeInsets.symmetric(vertical: 10),
+            )),
 
             decoration: BoxDecoration(
                 color: Color.fromRGBO(160, 127, 136, 0.7),

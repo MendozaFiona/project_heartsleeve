@@ -19,7 +19,7 @@ class EntryInfo{
 	final String id;
 	final String title;
 	final String content;
-  final tagsArr; //list
+  final tagsArr;
 	final String created;
 	
   EntryInfo({
@@ -43,20 +43,17 @@ class EntryInfo{
 }
 
 
+//retrieving the tags of an entry
 class TagsInfo{
-	//final String id;
-	//final String entryID;
-  final tagsArr; //list
+  final tags;
 	
   TagsInfo({
-		//this.id,
-		//this.entryID,
-		this.tagsArr,
+		this.tags,
 		
 	});
 	factory TagsInfo.fromJson(Map<String,dynamic> json){
 		return TagsInfo(
-			tagsArr: json['tags'],
+			tags: json['tag_id'],
 		);
 	}
 

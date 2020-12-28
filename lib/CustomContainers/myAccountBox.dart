@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:heartsleeve/CustomContainers/accountInformation.dart';
+//import 'package:heartsleeve/CustomContainers/accountInformation.dart';
+import 'package:heartsleeve/CustomContainers/tagsList.dart';
+import 'package:heartsleeve/Services/diaryEntryService.dart';
+import 'package:heartsleeve/JsonModels/diaryEntry.dart';
 
 class MyAccountBox extends StatelessWidget {
   final String fxn;
   final double heightBox;
+  final obj;
   //final BuildContext userContext;
 
-  const MyAccountBox({this.fxn, this.heightBox});
+  const MyAccountBox({this.fxn, this.heightBox, this.obj});
 
   //GET FROM DATABASE
   /*_test() {
@@ -38,7 +42,20 @@ class MyAccountBox extends StatelessWidget {
 
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(20, 10, 5, 10),
-                  child: SingleChildScrollView(child:accountInfo()), //this should be dynamic
+                  child: FutureBuilder<List<TagsInfo>>(
+                    future: getTags(obj.id),
+                    builder: (context, snapshot) {
+                      String _tagString = "";
+                      if (snapshot.hasData) {
+                        for (int i = 0; i < snapshot.data.length; i++) {
+                          _tagString = _tagString + "${snapshot.data[i].tags} | ";
+                        }
+                        return SingleChildScrollView(child: tagsList(_tagString));
+                      }
+
+                      return CircularProgressIndicator();
+                    },
+                  ), //this should be dynamic
                 ),
 
                 decoration: BoxDecoration(
@@ -48,7 +65,6 @@ class MyAccountBox extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * .9,
                 height: _getHeight(),
               ))),
-      
     );
   }
 }

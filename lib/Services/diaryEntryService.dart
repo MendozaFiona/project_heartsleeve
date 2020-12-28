@@ -26,7 +26,6 @@ Future<EntryInfo> discoverEntry() async {
       throw Exception('An error occured when retrieving entries');
     }
   } else {
-    print('body: [${response.body}]');
     return null;
   }
 }
@@ -43,20 +42,20 @@ Future<List<EntryInfo>> getEntries(String user, int page) async {
   }
 }
 
-Future<TagsInfo> getTags(String entryID) async {
-  var response =
-      await http.get('$API_URL/diary_entries/$entryID/tags');
-  try{
+List<TagsInfo> parseTags(String responseBody) {
+  final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
+  return parsed.map<TagsInfo>((json) => TagsInfo.fromJson(json)).toList();
+}
+
+Future<List<TagsInfo>> getTags(String entryID) async {
+  var response = await http.get('$API_URL/diary_entries/$entryID/tags');
+
   if (response.statusCode == 200) {
-    //String tagDecode = response.body.toString();
-    //var decoded = jsonDecode(response.body);
-    print(response.body);
-    return TagsInfo.fromJson(jsonDecode(response.body));
+    return parseTags(response.body);
   } else {
     throw Exception('An error occured when fetching entry tags');
-  } }catch(e){
-    print(e);
   }
+
 }
 
 Future<DiaryEntry> deleteEntry(id, token) async {
