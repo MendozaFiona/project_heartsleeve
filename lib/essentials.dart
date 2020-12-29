@@ -3,7 +3,7 @@ import 'package:textfield_tags/textfield_tags.dart';
 
 Container centerWidget(obj, context){
   return Container(
-    width: MediaQuery.of(context).size.width * 0.8,
+    width: MediaQuery.of(context).size.width,
     height: MediaQuery.of(context).size.height * 0.72,
     child:Center(
       child: obj,

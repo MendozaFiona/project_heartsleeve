@@ -14,7 +14,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
     HomePage(),
     WritePage(),
     DiscoverPage(),
-    BookmarksPage(),
     MyAccountPage()
   ];
 
@@ -52,10 +51,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
               BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage("assets/images/discover.png")),
                 label: 'discover',
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage("assets/images/bookmarked.png")),
-                label: 'bookmarks',
               ),
               BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage("assets/images/profile.png")),

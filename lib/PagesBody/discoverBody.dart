@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:heartsleeve/CustomContainers/myAccountBox.dart';
-import 'package:heartsleeve/CustomContainers/myAccountTitleBox.dart';
+import 'package:heartsleeve/CustomContainers/tagsBox.dart';
+import 'package:heartsleeve/CustomContainers/titleBox.dart';
 import 'package:provider/provider.dart';
 import 'package:heartsleeve/essentials.dart';
 import 'package:heartsleeve/CustomContainers/discoverEntry.dart';
@@ -32,7 +32,6 @@ class DiscoverBodyState extends State<DiscoverBody> {
   Widget build(BuildContext context) {
 
     return Consumer<BookmarksModel>(builder: (context, bookmark, child) {
-      var publicEntryID = 1; // change to acquiring id from database
 
       return Center(
         child: FutureBuilder<EntryInfo>(
@@ -47,13 +46,12 @@ class DiscoverBodyState extends State<DiscoverBody> {
 
               return Column(
               children: [
-                MyAccountBox(
+                TagsBox(
                   heightBox: 70.0, obj: snapshot.data,
                 ),
 
                 TitleBox(defaultTitle: randomData['title']),
-
-                //pay attention to this
+                
                 DiscoverEntry(
                   randomData: randomData,
                 ),
@@ -69,7 +67,6 @@ class DiscoverBodyState extends State<DiscoverBody> {
                   ),
                   IconButton(
                     icon: Icon(
-                      /*(bookmark.bookmarks.contains(compare index))*/ //23:00 provider, continue
                       Icons.favorite,
                       size: 30.0,
                       color: Color.fromRGBO(160, 127, 136, 1),
@@ -84,7 +81,7 @@ class DiscoverBodyState extends State<DiscoverBody> {
             }
             
             else if (snapshot.hasError){
-              return Text("${snapshot.error}");//${snapshot.error}
+              return Text("${snapshot.error}");
             }
 
             else if(snapshot.data == null){

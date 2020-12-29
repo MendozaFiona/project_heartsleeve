@@ -7,38 +7,6 @@ import 'package:heartsleeve/PagesBody/myAccountBody.dart';
 import 'package:heartsleeve/PagesBody/loginBody.dart';
 import 'package:heartsleeve/PagesBody/homeBody.dart';
 import 'package:heartsleeve/PagesBody/discoverBody.dart';
-import 'package:heartsleeve/PagesBody/myAccountEditBody.dart';
-import 'package:heartsleeve/PagesBody/bookmarksBody.dart';
-
-
-//BOOKMARKS
-class BookmarksPage extends StatelessWidget{
-  
-
-  @override 
-  Widget build(BuildContext context){
-
-    return Scaffold(
-      appBar: AppBar(
-          title: Text('Bookmarks'),
-      ),
-
-      body: Stack(
-        children: [
-          uniformBg(),
-          Container(
-            child: bookmarksBody(), //both home and bookmarks have same layout, different data
-            padding: EdgeInsets.all(20.0),
-          ),
-        ]
-      ),
-        
-    );
-
-  } // build
-
-}
-
 
 //DISCOVER
 class DiscoverPage extends StatelessWidget{
@@ -62,37 +30,6 @@ class DiscoverPage extends StatelessWidget{
           ),
         ]
       ),
-        
-    );
-
-  } // build
-
-}
-
-
-//MYACCOUNT EDIT
-class EditPage extends StatelessWidget{
-
-  @override 
-  Widget build(BuildContext context){
-
-    return Scaffold(
-      appBar: AppBar(
-          title: Text('Edit'),
-          automaticallyImplyLeading: true,
-          leading: IconButton(icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          )
-      ),
-
-      body: 
-          Container(
-            child: SingleChildScrollView(
-              child:EditBody(),
-              padding: EdgeInsets.fromLTRB(50, 40, 50, 40),
-          )),
         
     );
 
@@ -170,11 +107,12 @@ class MyAccountPage extends StatelessWidget{
       body: Stack(
         children: [
           uniformBg(),
-          Container(
-            child: SingleChildScrollView(
+          centerWidget(
+            SingleChildScrollView(
               child:MyAccountBody(),
               padding: EdgeInsets.all(20.0),
-            )
+            ),
+            context
           ),
         ]
       ),
@@ -198,7 +136,7 @@ class RegisterPage extends StatelessWidget{
           automaticallyImplyLeading: true,
           leading: IconButton(icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.popAndPushNamed(context, "/");
+              Navigator.pop(context);
             },
           )
       ),

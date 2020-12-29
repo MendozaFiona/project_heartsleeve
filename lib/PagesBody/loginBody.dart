@@ -20,12 +20,7 @@ class LoginFormState extends State<LoginBody> {
   //String _errMsg = "";
 
   void _register(BuildContext context) async {
-    final result = Navigator.pushNamed(context, "/register");
-    if (result != null) {
-      Scaffold.of(context)
-        ..removeCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text("Registration Successful")));
-    }
+    Navigator.pushNamed(context, "/register");
   }
 
   void _btmNav() {

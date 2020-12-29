@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:heartsleeve/essentials.dart';
-import 'package:heartsleeve/pages.dart';
 
 class DiaryPreview extends StatelessWidget {
 

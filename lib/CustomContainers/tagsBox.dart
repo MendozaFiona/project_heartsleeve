@@ -1,27 +1,15 @@
 import 'package:flutter/material.dart';
-//import 'package:heartsleeve/CustomContainers/accountInformation.dart';
+import 'package:heartsleeve/essentials.dart';
 import 'package:heartsleeve/CustomContainers/tagsList.dart';
 import 'package:heartsleeve/Services/diaryEntryService.dart';
 import 'package:heartsleeve/JsonModels/diaryEntry.dart';
 
-class MyAccountBox extends StatelessWidget {
+class TagsBox extends StatelessWidget {
   final String fxn;
   final double heightBox;
   final obj;
-  //final BuildContext userContext;
 
-  const MyAccountBox({this.fxn, this.heightBox, this.obj});
-
-  //GET FROM DATABASE
-  /*_test() {
-    var _testFxn = this.fxn;
-    //return accountInfo();
-    if (_testFxn == "accountInfo") {
-      return accountInfo();
-    } else if (_testFxn == "privacySafety") {
-      return privacySafety();
-    }
-  }*/
+  const TagsBox({this.fxn, this.heightBox, this.obj});
 
   _getHeight() {
     return this.heightBox;
@@ -29,16 +17,13 @@ class MyAccountBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //changeName();
 
-    //final _
     return InkWell(
       child: Padding(
           padding: EdgeInsets.only(bottom: 5.0),
           child: Align(
               alignment: Alignment.center,
               child: Container(
-                // CHANGE modify to depend text on parameter sent
 
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(20, 10, 5, 10),
@@ -53,9 +38,9 @@ class MyAccountBox extends StatelessWidget {
                         return SingleChildScrollView(child: tagsList(_tagString));
                       }
 
-                      return CircularProgressIndicator();
+                      return centerWidget(CircularProgressIndicator(), context);
                     },
-                  ), //this should be dynamic
+                  ),
                 ),
 
                 decoration: BoxDecoration(

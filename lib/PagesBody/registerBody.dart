@@ -9,16 +9,14 @@ class RegisterBody extends StatefulWidget {
   }
 }
 
-//CUSTOM BUTTON DOESNT SHOW IF ENABLED OR DISABLED!!!!
-
 class RegisterFormState extends State<RegisterBody> {
   final _formKey = GlobalKey<FormState>(),
       inputCol = Color.fromRGBO(160, 127, 136, 0.7),
       nameExp = RegExp(r"^[a-z A-Z,.\-]+$"),
       unameExp = RegExp(r"[a-zA-Z0-9]"),
       emailExp = RegExp(
-          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"), //CORRECT
-      passExp = RegExp("^(?=.{8,20})[a-zA-Z0-9._]"), //CORRECT
+          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"),
+      passExp = RegExp("^(?=.{8,20})[a-zA-Z0-9._]"),
       passTxtController = TextEditingController();
   final fnameTxtController = TextEditingController(),
       lnameTxtController = TextEditingController(),
@@ -44,7 +42,7 @@ class RegisterFormState extends State<RegisterBody> {
       setState(() {
         pass = passTxtController.text;
       });
-    }); //not yet validated!!!!!
+    });
 
     super.initState();
   }
@@ -65,8 +63,10 @@ class RegisterFormState extends State<RegisterBody> {
       var res = await addUser(_userData);
       print(res.message);
       if (res.message != "Cannot process request. Input errors.") {
-        Navigator.pop(context, res.message);
-        //Scaffold.of(context).showSnackBar(SnackBar(content: Text("Saving...")));
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text("Registration Successful")));
+        Future.delayed(Duration(seconds: 1), () {
+          Navigator.pop(context);
+        });
       } else {
         Scaffold.of(context).showSnackBar(SnackBar(
             content: Text(
