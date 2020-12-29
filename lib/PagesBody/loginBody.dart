@@ -37,7 +37,7 @@ class LoginFormState extends State<LoginBody> {
 
         if (loginResponse.errMsg == null) {
           Provider.of<AuthModel>(context, listen: false).login(
-              loginResponse.user, loginResponse.token); //requires user ig
+              loginResponse.user, loginResponse.token);
           _btmNav();
         } else {
           Scaffold.of(context).showSnackBar(SnackBar(

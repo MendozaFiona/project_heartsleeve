@@ -51,12 +51,14 @@ class DiscoverBodyState extends State<DiscoverBody> {
                 ),
 
                 TitleBox(defaultTitle: randomData['title']),
-                
+
                 DiscoverEntry(
                   randomData: randomData,
                 ),
 
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                emptySpace(10.0),
+
+                Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                   GestureDetector(
                     child:customButton("another", Color.fromRGBO(106, 65, 98, 1)),
                     onTap: (){
@@ -65,16 +67,6 @@ class DiscoverBodyState extends State<DiscoverBody> {
                       });
                     },
                   ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.favorite,
-                      size: 30.0,
-                      color: Color.fromRGBO(160, 127, 136, 1),
-                    ),
-                    onPressed: () {
-                      
-                    },
-                  )
                 ])
               ],
             );

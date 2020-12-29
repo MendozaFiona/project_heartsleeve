@@ -30,7 +30,6 @@ class DiaryPreview extends StatelessWidget {
             children:[
               
               GestureDetector(child: Container(
-            // CHANGE modify to depend text on parameter sent
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child:Row(
@@ -44,12 +43,12 @@ class DiaryPreview extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Color.fromRGBO(160, 127, 136, 0.7),
                     borderRadius: BorderRadius.all(
-                        Radius.circular(10))), //PUT THIS IN STYLES FOR REUSAGE!!!
+                        Radius.circular(10))),
 
                 width: MediaQuery.of(context).size.width * .95,
                 height: MediaQuery.of(context).size.height * .1,
               ),
-              onTap: ()  /*async*/ {
+              onTap: () {
 
                 editAction();
               
@@ -63,7 +62,7 @@ class DiaryPreview extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("${_pubDate()}"), //dynamic
+                  Text("${_pubDate()}"),
                   
                   GestureDetector(child:Text("delete"),
                     onTap: ()  async {

@@ -35,7 +35,7 @@ class HeartSleeveApp extends StatelessWidget {
           '/register': (context) => RegisterPage(),
           '/btmNav': (context) => BottomNavBar(),
           '/myAccount': (context) => MyAccountPage(),
-          //'/write': (context) => WritePage(),
+          '/write': (context) => WritePage(),
     
         }
       )

@@ -48,7 +48,7 @@ class DiscoverEntryState extends State<DiscoverEntry> {
                   ),
                   emptySpace(15.0),
                   Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0),
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Row(
                     children: [
                       Expanded(
