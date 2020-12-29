@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heartsleeve/Services/registerService.dart';
 import 'package:heartsleeve/essentials.dart';
 
 class RegisterBody extends StatefulWidget {
@@ -19,29 +20,60 @@ class RegisterFormState extends State<RegisterBody> {
           r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"), //CORRECT
       passExp = RegExp("^(?=.{8,20})[a-zA-Z0-9._]"), //CORRECT
       passTxtController = TextEditingController();
+  final fnameTxtController = TextEditingController(),
+      lnameTxtController = TextEditingController(),
+      usernameTxtController = TextEditingController(),
+      emailTxtController = TextEditingController();
+  var pass;
 
   bool _isAccepted = false;
 
   @override
   void dispose() {
     passTxtController.dispose();
+    fnameTxtController.dispose();
+    lnameTxtController.dispose();
+    usernameTxtController.dispose();
+    emailTxtController.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
+    passTxtController.addListener(() {
+      setState(() {
+        pass = passTxtController.text;
+      });
+    }); //not yet validated!!!!!
+
     super.initState();
-
-    passTxtController.addListener(_getConfirmPass);
   }
 
-  _getConfirmPass() {
-    //print("${passTxtController.text}");
-  }
-
-  _register() {
+  _register() async {
     if (_formKey.currentState.validate()) {
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text("Saving...")));
+      print("passed validation");
+      Map _userData = {
+        'fname': fnameTxtController.text,
+        'lname': lnameTxtController.text,
+        'username': usernameTxtController.text,
+        'email': emailTxtController.text,
+        'password': passTxtController.text,
+      };
+
+      print(_userData);
+
+      var res = await addUser(_userData);
+      print(res.message);
+      if (res.message != "Cannot process request. Input errors.") {
+        Navigator.pop(context, res.message);
+        //Scaffold.of(context).showSnackBar(SnackBar(content: Text("Saving...")));
+      } else {
+        Scaffold.of(context).showSnackBar(SnackBar(
+            content: Text(
+          "The email has already been taken",
+          style: TextStyle(color: Color.fromRGBO(243, 157, 182, 1)),
+        )));
+      }
     }
   }
 
@@ -72,31 +104,34 @@ class RegisterFormState extends State<RegisterBody> {
             decoration: formatDecor('first name'),
             maxLines: 1,
             validator: validateForm(nameExp),
+            controller: fnameTxtController,
           ),
           emptySpace(5.0),
           TextFormField(
             decoration: formatDecor('last name'),
             maxLines: 1,
             validator: validateForm(nameExp),
+            controller: lnameTxtController,
           ),
           emptySpace(5.0),
           TextFormField(
             decoration: formatDecor('username'),
             maxLines: 1,
             validator: validateForm(unameExp),
+            controller: usernameTxtController,
           ),
           emptySpace(5.0),
           TextFormField(
             decoration: formatDecor('email'),
             maxLines: 1,
             validator: validateForm(emailExp, "Please enter a valid email"),
+            controller: emailTxtController,
           ),
           emptySpace(5.0),
           TextFormField(
             obscureText: true,
             decoration: formatDecor('password'),
             controller: passTxtController,
-            //onChanged: ,
             maxLines: 1,
             validator:
                 validateForm(passExp, "Password must be 8-20 characters long"),
@@ -106,8 +141,7 @@ class RegisterFormState extends State<RegisterBody> {
             obscureText: true,
             decoration: formatDecor('confirm password'),
             maxLines: 1,
-            validator:
-                validateForm(passTxtController.text, "Password does not match", "confirm"),
+            validator: validateForm(pass, "Password does not match", "confirm"),
           ),
           emptySpace(6.0),
           Row(

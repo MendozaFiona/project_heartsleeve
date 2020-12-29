@@ -19,8 +19,13 @@ class LoginFormState extends State<LoginBody> {
 
   //String _errMsg = "";
 
-  void _register() {
-    Navigator.popAndPushNamed(context, "/register");
+  void _register(BuildContext context) async {
+    final result = Navigator.pushNamed(context, "/register");
+    if (result != null) {
+      Scaffold.of(context)
+        ..removeCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text("Registration Successful")));
+    }
   }
 
   void _btmNav() {
@@ -32,32 +37,27 @@ class LoginFormState extends State<LoginBody> {
       String email = emailTxtController.text;
       String password = passTxtController.text;
 
-      try{
-        var loginResponse = await authenticate(email,password);
+      try {
+        var loginResponse = await authenticate(email, password);
 
-        if(loginResponse.errMsg == null){
-          
-          Provider.of<AuthModel>(context, listen: false).login(loginResponse.user,loginResponse.token); //requires user ig
+        if (loginResponse.errMsg == null) {
+          Provider.of<AuthModel>(context, listen: false).login(
+              loginResponse.user, loginResponse.token); //requires user ig
           _btmNav();
-        }
-        else{
+        } else {
           Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text("${loginResponse.errMsg}",
-              style: TextStyle(
-                color: Color.fromRGBO(243, 157, 182, 1)
-              ),))
-          );
+              content: Text(
+            "${loginResponse.errMsg}",
+            style: TextStyle(color: Color.fromRGBO(243, 157, 182, 1)),
+          )));
         }
-      } catch (error){
+      } catch (error) {
         Scaffold.of(context).showSnackBar(SnackBar(
-          content: Text("${error.message}",
-            style: TextStyle(
-              color: Color.fromRGBO(243, 157, 182, 1)
-            ),))
-        );
+            content: Text(
+          "${error.message}",
+          style: TextStyle(color: Color.fromRGBO(243, 157, 182, 1)),
+        )));
       }
-      
-      
     }
   }
 
@@ -111,7 +111,9 @@ class LoginFormState extends State<LoginBody> {
                 style: TextStyle(
                     fontSize: 14, color: Color.fromRGBO(160, 127, 136, 1)),
               ),
-              onTap: _register)
+              onTap: () {
+                _register(context);
+              })
         ],
       ),
     );
