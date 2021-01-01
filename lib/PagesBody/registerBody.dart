@@ -49,7 +49,6 @@ class RegisterFormState extends State<RegisterBody> {
 
   _register() async {
     if (_formKey.currentState.validate()) {
-      print("passed validation");
       Map _userData = {
         'fname': fnameTxtController.text,
         'lname': lnameTxtController.text,
@@ -58,10 +57,8 @@ class RegisterFormState extends State<RegisterBody> {
         'password': passTxtController.text,
       };
 
-      print(_userData);
-
       var res = await addUser(_userData);
-      print(res.message);
+      
       if (res.message != "Cannot process request. Input errors.") {
         Scaffold.of(context).showSnackBar(SnackBar(content: Text("Registration Successful")));
         Future.delayed(Duration(seconds: 1), () {

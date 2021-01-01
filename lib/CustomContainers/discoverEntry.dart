@@ -35,15 +35,27 @@ class DiscoverEntryState extends State<DiscoverEntry> {
     return InkWell(
       child: Padding(
           padding: EdgeInsets.only(bottom: 10.0),
-          child: Container( // this should depend on length of diary!
+          child: Container(
             // CHANGE modify to depend text on parameter sent
             child: SingleChildScrollView(
               child: Padding(
                 child: Column(children: [
                   Row(
                     children: [
-                      Expanded(child: Text(_date, textAlign: TextAlign.center)),
-                      Expanded(child: Text(_words, textAlign: TextAlign.center)),
+                      Expanded(child: Text(_date, textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color.fromRGBO(244, 241, 236, .9),
+                          fontStyle: FontStyle.italic,
+                          fontSize: 12.0,
+                        ),
+                      )),
+                      Expanded(child: Text(_words, textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color.fromRGBO(244, 241, 236, .9),
+                          fontStyle: FontStyle.italic,
+                          fontSize: 12.0,
+                        ),
+                      )),
                     ], // children
                   ),
                   emptySpace(15.0),
@@ -52,7 +64,11 @@ class DiscoverEntryState extends State<DiscoverEntry> {
                   child: Row(
                     children: [
                       Expanded(
-                          child: Text(_content, textAlign: TextAlign.justify)),
+                          child: Text(_content, textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            color: Color.fromRGBO(0, 0, 0, .8),
+                          ),
+                        )),
                     ], // children
                   ))
                 ]),

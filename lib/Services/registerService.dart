@@ -7,8 +7,6 @@ import 'config.dart';
 Future<Registration> addUser(var data) async {
   var response = await http.post('$API_URL/register', body: data);
 
-  print(response.body);
-
   if (response.statusCode == 201 || response.statusCode == 422) {
     return Registration.fromJson(jsonDecode(response.body));
   } else {

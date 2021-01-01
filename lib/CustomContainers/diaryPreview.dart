@@ -36,8 +36,20 @@ class DiaryPreview extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                    Text('${enInfo.title}'),
-                    Text('${_pubChar()}'),
+                    Text('${enInfo.title}',
+                      style: TextStyle(
+                        color: Color.fromRGBO(106, 65, 98, 1),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                    Text('${_pubChar()}',
+                      style: TextStyle(
+                        color: Color.fromRGBO(244, 241, 236, 1),
+                        fontStyle: FontStyle.italic,
+                        fontSize: 12.0,
+                      ),
+                    ),
                 ])),
 
                 decoration: BoxDecoration(
@@ -62,9 +74,21 @@ class DiaryPreview extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("${_pubDate()}"),
+                  Text("${_pubDate()}",
+                      style: TextStyle(
+                        color: Color.fromRGBO(0, 0, 0, 0.7),
+                        fontStyle: FontStyle.italic,
+                        fontSize: 12.0,
+                      ),
+                  ),
                   
-                  GestureDetector(child:Text("delete"),
+                  GestureDetector(child:Text("delete",
+                              style: TextStyle(
+                                color: Color.fromRGBO(106, 65, 98, 1),
+                                fontWeight: FontWeight.bold,
+                                //fontSize: 12.0,
+                              ),
+                            ),
                     onTap: ()  async {
                       var res = await showDeleteDialog(context,delAction,enInfo);
                       if(res!=null){

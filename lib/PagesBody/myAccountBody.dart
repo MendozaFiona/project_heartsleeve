@@ -24,11 +24,8 @@ class MyAccountBodyState extends State<MyAccountBody> {
   _removeEntry() async {
     var token = Provider.of<AuthModel>(context, listen: false).token;
 
-    print(_user);
-
     try {
       var res = await deleteUser(_user, token);
-      print(res.message);
       return res;
     } catch (e) {
       print(e);
@@ -47,9 +44,33 @@ class MyAccountBodyState extends State<MyAccountBody> {
                     child: Text('Delete'),
                     onPressed: () async {
                       await _removeEntry();
-                      Navigator.of(context).pop(); //future delay this, with scaffold... add another navigator to exit app to logout
+        
+                      Navigator.of(context).pop();
+
+                      Provider.of<AuthModel>(context, listen: false).logout();
+                      Navigator.popAndPushNamed(context, "/");
 
                     }),
+                TextButton(
+                    child: Text('Cancel'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    })
+              ]);
+        });
+  }
+
+  showLogoutDialog(BuildContext context, _login) async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: Text('Logout'),
+              content: Text('Are you sure you want to logout?'),
+              actions: [
+                TextButton(
+                    child: Text('Logout'),
+                    onPressed: _login, ),
                 TextButton(
                     child: Text('Cancel'),
                     onPressed: () {
@@ -74,19 +95,7 @@ class MyAccountBodyState extends State<MyAccountBody> {
             defaultTitle: "delete my account",
           ),
           onTap: () async {
-            var res = await showDeleteDialog(context);
-            if (res != null) {
-              Scaffold.of(context)
-                ..removeCurrentSnackBar()
-                ..removeCurrentSnackBar()
-                ..showSnackBar(SnackBar(content: Text('$res')));
-            }
-            Scaffold.of(context).showSnackBar(SnackBar(content: Text("Deleting your account. We're very sorry to see you go...")));
-                      
-            Future.delayed(Duration(seconds: 2), () {
-              Provider.of<AuthModel>(context, listen: false).logout();
-              Navigator.popAndPushNamed(context, "/");
-            });
+            await showDeleteDialog(context);
           },
         ),
         emptySpace(10.0),
@@ -94,7 +103,9 @@ class MyAccountBodyState extends State<MyAccountBody> {
             padding: EdgeInsets.only(right: 10.0),
             child: GestureDetector(
               child: customButton("log out", Color.fromRGBO(106, 65, 98, 1)),
-              onTap: _login,
+              onTap: () async {
+                await showLogoutDialog(context, _login);
+              },
             )),
       ],
     );

@@ -28,7 +28,13 @@ class TitleBox extends StatelessWidget {
                   Expanded(
                       child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 15),
-                          child: Text(this.defaultTitle, textAlign: TextAlign.center))),
+                          child: Text(this.defaultTitle, textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color.fromRGBO(106, 65, 98, 1),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15.0,
+                              ),
+                          ))),
                 ],
 
                 //padding
