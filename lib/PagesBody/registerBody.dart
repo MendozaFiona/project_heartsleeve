@@ -57,17 +57,25 @@ class RegisterFormState extends State<RegisterBody> {
         'password': passTxtController.text,
       };
 
-      var res = await addUser(_userData);
-      
-      if (res.message != "Cannot process request. Input errors.") {
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text("Registration Successful")));
-        Future.delayed(Duration(seconds: 1), () {
-          Navigator.pop(context);
-        });
-      } else {
+      try{
+        var res = await addUser(_userData);
+        
+        if (res.message != "Cannot process request. Input errors.") {
+          Scaffold.of(context).showSnackBar(SnackBar(content: Text("Registration Successful")));
+          Future.delayed(Duration(seconds: 1), () {
+            Navigator.pop(context);
+          });
+        } else {
+          Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text(
+            "The email has already been taken",
+            style: TextStyle(color: Color.fromRGBO(243, 157, 182, 1)),
+          )));
+        }
+      }catch (error) {
         Scaffold.of(context).showSnackBar(SnackBar(
             content: Text(
-          "The email has already been taken",
+          "${error.message}",
           style: TextStyle(color: Color.fromRGBO(243, 157, 182, 1)),
         )));
       }
